@@ -16,6 +16,7 @@
       "admin": "ADMIN",
       "user": "USER"
     },
+    // Will we need to be updating these per migrations added/graphql info needed
     "gender": {
       "male": {
         "id": 1,

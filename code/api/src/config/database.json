@@ -7,6 +7,7 @@
     "dialect": "postgres",
     "seederStorage": "sequelize"
   },
+// Do we remove Production since we aren't deploying
   "production": {
     "username": "postgres",
     "password": null,
