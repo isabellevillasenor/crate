@@ -17,7 +17,8 @@ import EmptyMessage from '../common/EmptyMessage'
 import SubscriptionItem from '../subscription/Item'
 
 // Component
-// ANNOTATION: creates Subscriptions class component (what is a PureComponent?)
+// ANNOTATION: creates Subscriptions class component
+// (what is a PureComponent? why is this a class component if it doesn't have constructor/super/state?)
 class Subscriptions extends PureComponent {
 
   // Runs on server only for SSR

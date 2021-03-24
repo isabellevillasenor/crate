@@ -1,3 +1,4 @@
+// ANNOTATION: imports all required libraries, components, functions/props, etc.
 // Imports
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
@@ -17,39 +18,52 @@ import { messageShow, messageHide } from '../common/api/actions'
 import { remove, getListByUser } from '../subscription/api/actions'
 
 // Component
+// ANNOTATION: creates Subscriptions class component (what is a PureComponent?)
 class Item extends PureComponent {
 
   constructor(props) {
     super(props)
 
+    // ANNOTATION: sets initial state for component
     this.state = {
       isLoading: false
     }
   }
 
+  // ANNOTATION: runs when a user clicks unsubscribe on an Item (crate subscription)
   onClickUnsubscribe = (id) => {
+    // ANNOTATION: an alert box that pops up
     let check = confirm('Are you sure you want to unsubscribe to this crate?')
 
+    // ANNOTATION: if user clicked ok on alert box, run the following...
     if(check) {
       this.setState({
         isLoading: true
       })
 
+      // ANNOTATION: ...not sure why this is here?
       this.props.messageShow('Subscribing, please wait...')
 
+      // ANNOTATION: a POST that removes that subscription from the user's subscriptions list by id
       this.props.remove({id})
         .then(response => {
           if (response.data.errors && response.data.errors.length > 0) {
+            // ANNOTATION: checks for errors
             this.props.messageShow(response.data.errors[0].message)
           } else {
+            // ANNOTATION: success message
             this.props.messageShow('Unsubscribed successfully.')
 
+            // ANNOTATION: refreshes the user's subscription list in the UI
             this.props.getListByUser()
           }
         })
+        // ANNOTATION: another error message?
         .catch(error => {
           this.props.messageShow('There was some error subscribing to this crate. Please try again.')
         })
+
+        // ANNOTATION: loading & messages go away once action has been resolved
         .then(() => {
           this.setState({
             isLoading: false
@@ -62,6 +76,7 @@ class Item extends PureComponent {
     }
   }
 
+  // displays user subscriptions
   render() {
     const { id, crate, createdAt } = this.props.subscription
     const { isLoading } = this.state
@@ -98,6 +113,7 @@ class Item extends PureComponent {
 }
 
 // Component Properties
+// ANNOTATION: adds prop type checking
 Item.propTypes = {
   subscription: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
@@ -108,10 +124,12 @@ Item.propTypes = {
 }
 
 // Component State
+// ANNOTATION: seems like this is a mapStateToProps/mapDispatchToProps situation?
 function itemState(state) {
   return {
     user: state.user
   }
 }
 
+// ANNOTATION: connects a react component to our redux store... withRouter?
 export default connect(itemState, { remove, getListByUser, messageShow, messageHide })(withRouter(Item))
