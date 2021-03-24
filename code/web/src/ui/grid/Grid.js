@@ -18,8 +18,6 @@ const Grid = (props) => {
     ...others
   } = props
 
-  //what is gutter?
-  
   const GridCells = React.Children.map(children, (GridCell) => {
     if (!GridCell) {
       return null

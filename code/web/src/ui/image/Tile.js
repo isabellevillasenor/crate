@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 // Component
 const Tile = (props) => {
   const { children, image, width, height, style, shadow, ...others } = props
-//our product image (thinks cards) that's iterated over
+  
   return (
     <div style={Object.assign({ height, width }, style)} {...others}>
       {children}

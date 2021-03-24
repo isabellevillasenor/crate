@@ -49,8 +49,6 @@ const Button = (props) => {
   )
 }
 
-//This seems to have Vue like styling.
-
 // Component Properties
 Button.propTypes = {
   type: PropTypes.string,

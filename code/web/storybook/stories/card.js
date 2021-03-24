@@ -14,5 +14,3 @@ storiesOf('Card', module)
       <p>Lunas persuadere! Urias sunt castors de alter nomen. Sunt nixes perdere alter, festus capioes.</p>
     </Card>
   ))
-
-//This will be what will be rendered for items avaliable?
