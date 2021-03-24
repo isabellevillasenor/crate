@@ -47,9 +47,12 @@ class Subscriptions extends PureComponent {
           <GridCell style={{ padding: '2em', textAlign: 'center' }}>
             <H3 font="secondary">My subscriptions</H3>
 
+            {/* ANNOTATION: add delivery arrival date and button/link to edit (on profile page) here */}
+
             <p style={{ marginTop: '1em', color: grey2 }}>The crates you are subscribed to are listed here. You can
               cancel
               anytime.</p>
+
           </GridCell>
         </Grid>
 
