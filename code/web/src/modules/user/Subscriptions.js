@@ -22,13 +22,13 @@ import SubscriptionItem from '../subscription/Item'
 class Subscriptions extends PureComponent {
 
   // Runs on server only for SSR
-  {/* ANNOTATION: server side rendering? */}
+  // ANNOTATION: server side rendering?
   static fetchData({ store }) {
     return store.dispatch(getListByUser())
   }
 
   // Runs on client only
-  {/* ANNOTATION: get list of subscriptions by user on load */}
+  // ANNOTATION: get list of subscriptions by user on load
   componentDidMount() {
     this.props.getListByUser()
   }
