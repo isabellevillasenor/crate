@@ -21,3 +21,5 @@ storiesOf('Button', module)
   .add('with icon', () => (
     <Button type="button" theme="primary" onClick={action('clicked')}>Button <Icon size={1.3}>face</Icon></Button>
   ))
+
+//these are various templates for buttons that will be imported where they're needed.

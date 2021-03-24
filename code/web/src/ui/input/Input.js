@@ -8,7 +8,7 @@ import { grey2, grey4, black } from '../common/colors'
 // Component
 const Input = (props) => {
   const { type, fullWidth, ...other } = props
-
+  //this will be the space where description, adress, etc will be used
   return (
     <div>
       <input type={type} {...other} />

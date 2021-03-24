@@ -7,7 +7,7 @@ import { level1 } from '../common/shadows'
 // Component
 const Card = (props) => {
   const { children, ...other } = props
-
+//what will card represent for us?
   return (
     <div {...other}>
       {children}

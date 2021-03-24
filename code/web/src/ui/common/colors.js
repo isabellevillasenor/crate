@@ -17,3 +17,5 @@ export const grey3 = '#666666'
 export const grey4 = '#333333'
 
 export const black = '#000000'
+
+//common is similar to scss, but uses es6 to export those variables instead

@@ -11,7 +11,7 @@ import Icon from '../icon'
 // Component
 const File = (props) => {
   const { text, style, name, ...other } = props
-
+//to be used for our image upload
   return (
     <div>
       <div className="file-upload" style={style}>

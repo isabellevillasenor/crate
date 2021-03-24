@@ -8,7 +8,7 @@ import { grey2, grey4, black } from '../common/colors'
 // Component
 const Input = (props) => {
   const { children, fullWidth, ...other } = props
-
+//select represents selected item?
   return (
     <div>
       <select {...other}>{children}</select>
