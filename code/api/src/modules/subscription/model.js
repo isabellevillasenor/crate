@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER
     }
   })
-
+// Define relationship here as you would in Models in Rails
   Subscription.associate = function(models) {
     Subscription.belongsTo(models.User)
     Subscription.belongsTo(models.Crate)
