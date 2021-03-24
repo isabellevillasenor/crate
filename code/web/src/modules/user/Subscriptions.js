@@ -1,3 +1,4 @@
+// ANNOTATION: imports all required libraries, components, functions/props, etc.
 // Imports
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
@@ -16,14 +17,17 @@ import EmptyMessage from '../common/EmptyMessage'
 import SubscriptionItem from '../subscription/Item'
 
 // Component
+// ANNOTATION: creates Subscriptions class component (what is a PureComponent?)
 class Subscriptions extends PureComponent {
 
   // Runs on server only for SSR
+  {/* ANNOTATION: server side rendering? */}
   static fetchData({ store }) {
     return store.dispatch(getListByUser())
   }
 
   // Runs on client only
+  {/* ANNOTATION: get list of subscriptions by user on load */}
   componentDidMount() {
     this.props.getListByUser()
   }
@@ -37,6 +41,7 @@ class Subscriptions extends PureComponent {
         </Helmet>
 
         {/* Top title bar */}
+        {/* ANNOTATION: displays "My subscriptions" banner section */}
         <Grid style={{ backgroundColor: grey }}>
           <GridCell style={{ padding: '2em', textAlign: 'center' }}>
             <H3 font="secondary">My subscriptions</H3>
@@ -48,6 +53,7 @@ class Subscriptions extends PureComponent {
         </Grid>
 
         {/* Product list */}
+        {/* ANNOTATION: displays each subscription item component (conditionally rendered) */}
         <Grid>
           <GridCell>
             {
@@ -69,16 +75,19 @@ class Subscriptions extends PureComponent {
 }
 
 // Component Properties
+// ANNOTATION: adds prop type checking
 Subscriptions.propTypes = {
   subscriptions: PropTypes.object.isRequired,
   getListByUser: PropTypes.func.isRequired
 }
 
 // Component State
+// ANNOTATION: seems like this is a mapStateToProps/mapDispatchToProps situation?
 function subscriptionsState(state) {
   return {
     subscriptions: state.subscriptionsByUser
   }
 }
 
+// ANNOTATION: connects a react component to our redux store
 export default connect(subscriptionsState, { getListByUser })(Subscriptions)
