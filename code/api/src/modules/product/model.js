@@ -23,4 +23,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT
     }
   })
+
+  Products.associate = function(models) {
+    Products.hasMany(models.crateProducts)
+    Products.hasMany(models.Crate).through(models.crateProducts)
+    Products.hasMany(models.userProducts)
+    Products.hasMany(models.User).through(models.userProducts)
+  }
+
+  return Products
 }
