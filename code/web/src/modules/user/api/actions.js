@@ -1,12 +1,13 @@
 // Imports
 import axios from 'axios'
-import { query, mutation } from 'gql-query-builder'
+import { query, mutation } from 'gql-query-builder' // ANNOTATION: look into this with graph ql
 import cookie from 'js-cookie'
 
 // App Imports
-import { routeApi } from '../../../setup/routes'
+import { routeApi } from '../../../setup/routes' // ANNOTATION: gets API endpoint?
 
 // Actions Types
+// ANNOTATION: what actually are these strings?
 export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
@@ -21,7 +22,6 @@ export function setUser(token, user) {
   } else {
     delete axios.defaults.headers.common['Authorization'];
   }
-
   return { type: SET_USER, user }
 }
 
@@ -88,6 +88,7 @@ export function register(userDetails) {
 }
 
 // Log out user and remove token from localStorage
+// ANNOTATION: removes token from local storage when a user logs out
 export function logout() {
   return dispatch => {
     logoutUnsetUserLocalStorageAndCookie()
@@ -117,3 +118,5 @@ export function getGenders() {
     }))
   }
 }
+
+// ANNOTATION: Put actions for new features here
