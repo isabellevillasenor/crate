@@ -26,7 +26,7 @@ const Profile = (props) => (
     </Helmet>
 
     {/* Top title bar */}
-    {/* ANNOTATION: displays "My Profile" banner section */}
+    {/* ANNOTATION: displays "My Profile" banner section - REPLACE WITH SUBNAV */}
     <Grid style={{ backgroundColor: grey }}>
       <GridCell style={{ padding: '2em', textAlign: 'center' }}>
         <H3 font="secondary">My profile</H3>
@@ -36,16 +36,23 @@ const Profile = (props) => (
     {/* ANNOTATION: displays the name & email of the user that logged in */}
     <Grid>
       <GridCell style={{ padding: '2em', textAlign: 'center' }}>
+        {/* ANNOTATION: add profile pic */}
+
         <H4 style={{ marginBottom: '0.5em' }}>{props.user.details.name}</H4>
 
+        {/* ANNOTATION: add edit email button */}
         <p style={{ color: grey2, marginBottom: '2em' }}>{props.user.details.email}</p>
 
-        {/* ANNOTATION: displays a button linking to the user's subscriptions page (also found in header) */}
+        {/* ANNOTATION: add personal description and edit button */}
+        {/* ANNOTATION: add address and edit button */}
+        {/* ANNOTATION: add delivery date edit dropdown */}
+
+        {/* ANNOTATION: displays a button linking to the user's subscriptions page (also found in header) - REMOVE */}
         <Link to={userRoutes.subscriptions.path}>
           <Button theme="primary">Subscriptions</Button>
         </Link>
 
-        {/* ANNOTATION: displays a button to log out */}
+        {/* ANNOTATION: displays a button to log out - MOVE TO SUB NAV */}
         <Button theme="secondary" onClick={props.logout} style={{ marginLeft: '1em' }}>Logout</Button>
       </GridCell>
     </Grid>
