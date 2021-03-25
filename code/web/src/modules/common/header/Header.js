@@ -21,6 +21,7 @@ import MenuItem from './MenuItem'
 // Component
 const Header = (props) => {
   return (
+    //creates menu with style and links to each option for user
     <header style={{
       backgroundImage: primaryGradient,
       boxShadow: level1,
@@ -31,6 +32,7 @@ const Header = (props) => {
       right: 0,
       top: 0
     }}>
+      
       <Grid alignCenter={true} style={{ marginTop: '1.5em' }}>
         <GridCell>
           {/* Logo */}
@@ -88,3 +90,4 @@ function headerState(state) {
 }
 
 export default withRouter(connect(headerState, {})(Header))
+//This gives the Header component access to this.props.history, which means the header can now redirect the user.

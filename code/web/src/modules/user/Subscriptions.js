@@ -46,7 +46,7 @@ class Subscriptions extends PureComponent {
               anytime.</p>
           </GridCell>
         </Grid>
-
+{/* Add delivery date and button link to profile page*/}
         {/* Product list */}
         <Grid>
           <GridCell>

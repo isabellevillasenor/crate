@@ -101,6 +101,7 @@ export function logout() {
 // Unset user token and info in localStorage and cookie
 export function logoutUnsetUserLocalStorageAndCookie() {
   // Remove token
+  //used for authenticating a user, gives an api something to confirm a user is logging in and out
   window.localStorage.removeItem('token')
   window.localStorage.removeItem('user')
 

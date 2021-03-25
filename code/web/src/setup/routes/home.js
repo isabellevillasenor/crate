@@ -4,7 +4,7 @@ import Men from '../../modules/pages/Men'
 import Women from '../../modules/pages/Women'
 import HowItWorks from '../../modules/pages/HowItWorks'
 import WhatsNew from '../../modules/pages/WhatsNew'
-
+// creates routes to each option in menu
 // Home routes
 export default {
   home: {

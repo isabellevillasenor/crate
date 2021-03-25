@@ -47,3 +47,9 @@ export default (state = userInitialState, action) => {
       return state
   }
 }
+
+//add a case that updates user profile information details
+// user details already include name and email
+// we need to add address, image, description, (possibly available times/days), actual  scheduled delivery date
+// also an array of all products delivered
+// a property on each product that indicates if it has been kept or not
