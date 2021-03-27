@@ -23,8 +23,12 @@
     "url": "https://github.com/atulmy/crate/issues"
   },
   "homepage": "https://github.com/atulmy/crate#readme",
-  "dependencies": {},
+  "dependencies": {
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2"
+  },
   "devDependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "sequelize-cli": "^6.2.0"
   }
 }
