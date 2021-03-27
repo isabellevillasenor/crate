@@ -29,10 +29,10 @@ MyProducts.propTypes = {
 }
 
 // Component State
-function profileState(state) {
+function productsState(state) {
   return {
     user: state.user
   }
 }
 
-export default connect(profileState, { logout })(MyProducts)
+export default connect(productsState, { logout })(MyProducts)
