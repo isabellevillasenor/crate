@@ -1,6 +1,8 @@
 // Imports
 import { compose, combineReducers } from 'redux'
 import { createStore, applyMiddleware } from 'redux'
+//This will allow chrome dev tools access to the store to display in the console.
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 
 // App Imports
@@ -40,7 +42,7 @@ export const store = createStore(
   rootReducer,
   initialState,
 
-  compose(
+  composeWithDevTools(
     applyMiddleware(thunk),
   )
 )
