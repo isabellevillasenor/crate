@@ -14,11 +14,22 @@ module.exports = function(sequelize, DataTypes) {
     },
     role: {
       type: DataTypes.TEXT
+    },
+    image: {
+      type: DataTypes.STRING
+    },
+    address: {
+      type: DataTypes.STRING
+    },
+    description: {
+      type: DataTypes.STRING
     }
   })
 
   User.associate = function(models) {
     User.hasMany(models.Subscription)
+    User.hasMany(models.userProducts)
+    User.hasMany(models.Product).through(models.userProducts)
   }
 
   return User
