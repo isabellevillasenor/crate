@@ -11,11 +11,15 @@ import Button from '../../ui/button'
 import { grey, grey2, black } from '../../ui/common/colors'
 
 //App Imports
+import SubNav from './SubNav'
 import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 
 const MyProducts = () => (
-  <div>Future My Products Component</div>
+  <>
+    <SubNav />
+    <div>Future My Products Component</div>
+  </>
 )
 
 // Component Properties
