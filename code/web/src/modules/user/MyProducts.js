@@ -31,7 +31,7 @@ const MyProducts = (props) => (
         {/* Top actions bar */}
         <Grid alignCenter={true} style={{ padding: '1em' }  }>
           <GridCell style={{ textAlign: 'right' }}>
-            <Button theme="secondary" style={{ marginTop:   '1em' }}>
+            <Button theme="primary" style={{ marginTop:   '1em' }}>
               Toggle Kept Products
             </Button>
           </GridCell>
