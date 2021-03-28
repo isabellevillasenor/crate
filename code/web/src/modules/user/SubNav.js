@@ -15,7 +15,7 @@ import { grey, grey2, black } from '../../ui/common/colors'
 import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 
-const SubNav = () => {
+const SubNav = (props) => {
   const currentPage = window.location.pathname
   const checkColor = linkName => {
     return currentPage === linkName 
@@ -43,7 +43,7 @@ const SubNav = () => {
         <GridCell style={{ padding: '2em', textAlign: 'center' }}>
 
         <Link to={userRoutes.profile.path}>
-          <Button theme={checkColor('/user/profile')} style={{ marginLeft: '1em' }}>My Account {`${currentPage}`}</Button>
+          <Button theme={checkColor('/user/profile')} style={{ marginLeft: '1em' }}>My Account</Button>
         </Link>
 
         <Link to={userRoutes.products.path}>
