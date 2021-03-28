@@ -1,4 +1,5 @@
 'use strict';
+// seeds file-- creates dummy data
 
 module.exports = {
   up: (queryInterface, Sequelize) => {

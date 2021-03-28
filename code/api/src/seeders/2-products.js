@@ -1,5 +1,5 @@
 'use strict';
-
+// seeds file-- creates dummy data
 const params = require('../config/params');
 
 module.exports = {

@@ -1,4 +1,5 @@
 'use strict';
+// seeds file-- creates dummy data
 
 const bcrypt = require('bcrypt');
 const config = require('../config/server.json');
