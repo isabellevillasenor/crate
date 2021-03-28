@@ -3,6 +3,7 @@
 // Subscription
 module.exports = function(sequelize, DataTypes) {
   let Subscription = sequelize.define('subscriptions', {
+    // defines the colmuns in the subscription table 
     userId: {
       type: DataTypes.INTEGER
     },

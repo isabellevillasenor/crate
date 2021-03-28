@@ -7,6 +7,7 @@ const ProductType = new GraphQLObjectType({
   description: 'Product Type',
 
   fields: () => ({
+    // defines the columns and data types in the product table/new product type
     id: { type: GraphQLInt },
     name: { type: GraphQLString },
     slug: { type: GraphQLString },
@@ -29,5 +30,5 @@ const ProductTypesType = new GraphQLObjectType({
     name: { type: GraphQLString }
   })
 })
-
+// creates a product type (think class/model from rails), and also product type type which is gender
 export { ProductType, ProductTypesType }

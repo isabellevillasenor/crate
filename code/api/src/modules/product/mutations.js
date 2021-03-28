@@ -6,9 +6,11 @@ import { ProductType } from './types'
 import { create, update, remove } from './resolvers'
 
 // Product create
+// think 'controller'-- mutations makes changes to the table
 export const productCreate = {
   type: ProductType,
   args: {
+    // args defines what query is needed to perform this function
     name: {
       name: 'name',
       type: GraphQLString

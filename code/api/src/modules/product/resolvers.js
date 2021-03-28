@@ -15,6 +15,7 @@ export async function getBySlug(parentValue, { slug }) {
     // Product does not exists
     throw new Error('The product you are looking for does not exists or has been discontinued.')
   } else {
+    // this abstracts the error messages from the query or mutation files, which perform like a controller in rails
     return product
   }
 }
@@ -33,6 +34,7 @@ export async function getById(parentValue, { productId }) {
 
 // Get related products
 export async function getRelated(parentValue, { productId }) {
+  // async helps the code run faster
   return await models.Product.findAll({
     where: {
       id: { [models.Sequelize.Op.not]: productId }
@@ -45,6 +47,7 @@ export async function getRelated(parentValue, { productId }) {
 // Create product
 export async function create(parentValue, { name, slug, description, type, gender, image }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
+    // ensure user has appropriate authorization
     return await models.Product.create({
       name,
       slug,
@@ -61,6 +64,7 @@ export async function create(parentValue, { name, slug, description, type, gende
 // Update product
 export async function update(parentValue, { id, name, slug, description, type, gender, image }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
+    //ensure user has appropriate authorization
     return await models.Product.update(
       {
         name,
@@ -83,6 +87,7 @@ export async function remove(parentValue, { id }, { auth }) {
     const product = await models.Product.findOne({where: {id}})
 
     if (!product) {
+      // embedded if-- run when user has appropriate authorization
       // Product does not exists
       throw new Error('The product does not exists.')
     } else {

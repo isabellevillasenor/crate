@@ -20,3 +20,4 @@ const SubscriptionType = new GraphQLObjectType({
 })
 
 export default SubscriptionType
+//creates a new type/class/model (subscription) based on the columns in the subscription table

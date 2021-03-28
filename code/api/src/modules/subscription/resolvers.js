@@ -15,6 +15,7 @@ export async function get(parentValue, { id }) {
 // Get subscription by user
 export async function getByUser(parentValue, {}, { auth }) {
   if(auth.user && auth.user.id > 0) {
+    // ensure user has correct authorization and is logged in correctly
     return await models.Subscription.findAll({
       where: {
         userId: auth.user.id
@@ -32,6 +33,7 @@ export async function getByUser(parentValue, {}, { auth }) {
 // Get all subscriptions
 export async function getAll() {
   return await models.Subscription.findAll({
+    //abstracts from query/mutations
     include: [
       { model: models.User, as: 'user' },
       { model: models.Crate, as: 'crate' },

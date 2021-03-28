@@ -7,6 +7,7 @@ import { create, remove } from './resolvers'
 
 // Subscription create
 export const subscriptionCreate = {
+  //make a new subscription using args for your query
   type: SubscriptionType,
   args: {
     crateId: {
@@ -19,6 +20,7 @@ export const subscriptionCreate = {
 
 // Subscription remove
 export const subscriptionRemove = {
+  // remove a subscription using args for your query
   type: SubscriptionType,
   args: {
     id: {

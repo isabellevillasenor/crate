@@ -7,6 +7,7 @@ import { getAll, getBySlug, getById, getRelated, getTypes } from './resolvers'
 
 // Products All
 export const products = {
+  // get all products-- requires no arguments to retrieve info
   type: new GraphQLList(ProductType),
   resolve: getAll
 }
@@ -15,6 +16,7 @@ export const products = {
 export const product = {
   type: ProductType,
   args: {
+    // getting a product by slug requires a slug
     slug: { type: GraphQLString }
   },
   resolve: getBySlug
@@ -24,6 +26,7 @@ export const product = {
 export const productById = {
   type: ProductType,
   args: {
+    // you need a product ID to get a product by ID
     productId: { type: GraphQLInt }
   },
   resolve: getById

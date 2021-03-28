@@ -2,6 +2,7 @@
 'use strict'
 
 module.exports = function(sequelize, DataTypes) {
+  // defines the data types in the Crate table
   let Crate = sequelize.define('crates', {
     name: {
       type: DataTypes.STRING
@@ -12,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
   })
 // Define relationship here as you would in Models in Rails
   Crate.associate = function(models) {
+    // defines the associations between Crate and other tables
     Crate.hasMany(models.Subscription)
   }
 

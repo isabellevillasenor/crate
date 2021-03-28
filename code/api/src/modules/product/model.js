@@ -4,6 +4,7 @@
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('products', {
     // The reason this has `return sequelize` instead of `let Product = ` is because there are no current relationships
+    // define the columns and data types located in the product tables
     name: {
       type: DataTypes.STRING
     },
@@ -24,3 +25,4 @@ module.exports = function(sequelize, DataTypes) {
     }
   })
 }
+// no associations with the product table (we shoudl probably create some!)

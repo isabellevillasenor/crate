@@ -6,6 +6,7 @@ import CrateType from './types'
 import { create, remove, update } from './resolvers'
 
 // Crate create
+// Think 'controller' with this file-- create, update, remove commands with description/type, GraphQL query
 export const crateCreate = {
   type: CrateType,
   args: {
@@ -26,6 +27,7 @@ export const crateCreate = {
 export const crateUpdate = {
   type: CrateType,
   args: {
+    //args defines what needs to be included in the query
     id: {
       name: 'id',
       type: GraphQLInt

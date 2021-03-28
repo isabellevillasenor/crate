@@ -7,7 +7,7 @@ export async function getById(parentValue, { crateId }) {
   const crate = await models.Crate.findOne({ where: { id: crateId } })
 
   if (!crate) {
-    // Crate does not exists
+    // Crate does not exist
     throw new Error('The crate you are looking for does not exists or has been discontinued.')
   } else {
     return crate
@@ -16,6 +16,7 @@ export async function getById(parentValue, { crateId }) {
 
 // Get all crates
 export async function getAll(parentValue, { orderBy }) {
+  //get all crates by another table associate
   return await models.Crate.findAll({ order: [['id', orderBy]] })
 }
 
@@ -27,6 +28,7 @@ export async function create(parentValue, { name, description }, { auth }) {
       description
     })
   } else {
+    //if the user is authenticated and has the correct role, create a crate, otherwise deny
     throw new Error('Operation denied.')
   }
 }
@@ -34,6 +36,7 @@ export async function create(parentValue, { name, description }, { auth }) {
 // Update crate
 export async function update(parentValue, { id, name, description }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
+    // ensuring user has the correct authentication
     return await models.Crate.update(
       {
         name,
@@ -49,6 +52,7 @@ export async function update(parentValue, { id, name, description }, { auth }) {
 // Delete crate
 export async function remove(parentValue, { id }, { auth }) {
   if(auth.user && auth.user.role === params.user.roles.admin) {
+    // ensure user has the correct authentication
     return await models.Crate.destroy({where: {id}})
   } else {
     throw new Error('Operation denied.')
