@@ -7,12 +7,14 @@ import { connect } from 'react-redux'
 import { Grid, GridCell } from '../../ui/grid'
 import { H4 } from '../../ui/typography'
 import { Input, Textarea, File, Select } from '../../ui/input'
-import { Icon } from '../../ui/icon'
-import { grey2 } from '../../ui/common/colors'
+import Icon from '../../ui/icon'
+import Button from '../../ui/button'
+import { grey2, black } from '../../ui/common/colors'
 
 //App Imports
 import SubNav from './SubNav'
 import { logout } from './api/actions'
+import { APP_URL } from '../../setup/config/env'
 
 const MyAccount = (props) => (
   <>
@@ -39,32 +41,32 @@ const MyAccount = (props) => (
             <p style={{ color: grey2 }}><strong>Personal Description:</strong></p>
             <p style={{ color: grey2 }}>Pickled hops explosion faux bacon food carts Vera Katz Ruby Jewel animal welfare west hills money tall boys stumptown dreadlocks cashew cheese Impossible Burger smoked ham ice cream a dog gym. No, You Go stumptown Portlandia plaid evergreens IPA co-op it's raining again bubble tea Beaverton late-night happy hours neckbeard nothin' muffin pearl district First Thursdays Rocky Butte. Flannel bicycle rights sustainable Santacon mustachioed bartenders beardfest 82nd Avenue of Roses gentrification clouds Snowpacolypse frozen fog dog parks scenester Silicon Forest. Kristian Foden-Vencil fifth quadrant microbrew vegan Gresham Alberta Hawthorne breweries wood-fired oven punk rock Hood to Coast veggie burger DIY Alberta Arts nanobrewery.</p>
             {/*<Textarea type='textarea' value='' name='description' placeholder='' /> HAVE THIS APPEAR ON CLICK*/}
-            <button>edit</button>
+            <Button type="submit" theme="secondary" style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }} ><img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" /></Button>
           </section>
 
           <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', width: '40%', height: '60vh' }}>
             {/* Email */}
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <p style={{ color: grey2, marginBottom: '1.5em' }}>Email:</p>
-              <div style={{ display: 'flex' }}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Input type='text' value='' name='email' placeholder={props.user.details.email} style={{ textAlign: 'center' }}/>
-                <button>edit</button>
+                <Button type="submit" theme="secondary" style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}><img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" /></Button>
               </div>
             </div>
 
             {/* Mailing Address */}
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <p style={{ color: grey2, marginBottom: '1.5em' }}>Address:</p>
-              <div style={{ display: 'flex' }}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
                 <Input type='text' value='' name='address' placeholder='1675 E 45th Dr, Denver, CO' />
-                <button>edit</button>
+                <Button type="submit" theme="secondary" style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}><img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" /></Button>
               </div>
             </div>
 
             {/* Delivery Date */}
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <p style={{ color: grey2, marginBottom: '1.5em' }}>Current delivery date: Monday</p>
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Select name='deliveryDate'>
                   <option value='Monday'>Monday</option>
                   <option value='Tuesday'>Tuesday</option>
@@ -74,7 +76,7 @@ const MyAccount = (props) => (
                   <option value='Saturday'>Saturday</option>
                   <option value='Sunday'>Sunday</option>
                 </Select>
-                <button>submit</button>
+                <Button type="submit" theme="secondary" style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em', color: black }}>Submit</Button>
               </div>
             </div>
           </section>
