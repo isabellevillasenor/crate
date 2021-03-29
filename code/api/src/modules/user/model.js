@@ -28,9 +28,10 @@ module.exports = function(sequelize, DataTypes) {
 
   User.associate = function(models) {
     User.hasMany(models.Subscription)
-    User.hasMany(models.userProducts)
-    User.hasMany(models.Product).through(models.userProducts)
-  }
+    User.belongsToMany(models.Product, {
+      through: 'userProducts'
+    });
+  };
 
   return User
 }
