@@ -35,7 +35,7 @@ const MyAccount = (props) => (
                 style={{ display: 'inline', margin: '0 auto', marginLeft: '-25%', height: '100%', width: 'auto' }}
               />
             </div>
-            <File type='file' name='image' />
+            <File type='file' name='image' text='Upload Image' />
 
             {/* Personal Description */}
             <p style={{ color: grey2 }}><strong>Personal Description:</strong></p>
