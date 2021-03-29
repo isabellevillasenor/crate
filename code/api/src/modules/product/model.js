@@ -3,6 +3,7 @@
 // Product
 module.exports = function(sequelize, DataTypes) {
   let Product = sequelize.define('products', {
+    // The reason this has `return sequelize` instead of `let Product = ` is because there are no current relationships
     name: {
       type: DataTypes.STRING
     },
@@ -24,11 +25,13 @@ module.exports = function(sequelize, DataTypes) {
   })
 
   Product.associate = function(models) {
-    Product.hasMany(models.crateProducts)
-    Product.hasMany(models.Crate).through(models.crateProducts)
-    Product.hasMany(models.userProducts)
-    Product.hasMany(models.User).through(models.userProducts)
-  }
+    Product.belongsToMany(models.Crate, {
+      through: 'crateProducts'
+    })
+    Product.belongsToMany(models.User, {
+      through: 'userProducts'
+    });
+  };
 
   return Product
 }
