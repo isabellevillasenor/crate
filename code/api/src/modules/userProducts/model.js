@@ -2,7 +2,7 @@
 'use strict'
 
 module.exports = function(sequelize, DataTypes) {
-  let userProducts = sequelize.define('userProducts', {
+  let UserProduct = sequelize.define('userProducts', {
     user_id: {
       type: DataTypes.INTEGER
     },
@@ -17,10 +17,6 @@ module.exports = function(sequelize, DataTypes) {
     }
   })
 // Define relationship here as you would in Models in Rails
-  userProducts.associate = function(models) {
-    userProducts.belongsTo(models.User)
-    userProducts.belongsTo(models.Product)
-  }
 
-  return userProducts
+  return UserProduct
 }

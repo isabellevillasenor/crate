@@ -4,7 +4,6 @@ import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
 // App Imports
 import { UserType } from '../user/types'
 import CrateType from '../crate/types'
-import UserType from '../user/types'
 
 // Subscription type
 const SubscriptionType = new GraphQLObjectType({
