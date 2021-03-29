@@ -19,7 +19,7 @@ const MyProducts = () => (
 )
 
 // Component Properties
-Profile.propTypes = {
+MyProducts.propTypes = {
   user: PropTypes.object.isRequired,
   logout: PropTypes.func.isRequired
 }
