@@ -1,4 +1,4 @@
-"use strict";
+
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable("userProducts", {
@@ -16,10 +16,10 @@ module.exports = {
         },
         allowNull: false
       },
-      crateId: {
+      productId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "crates",
+          model: "products",
           key: "id"
         },
       },
@@ -40,6 +40,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("UserProducts");
+    return queryInterface.dropTable("userProducts");
   }
 };

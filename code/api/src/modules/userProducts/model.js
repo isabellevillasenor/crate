@@ -18,8 +18,9 @@ module.exports = function(sequelize, DataTypes) {
   })
 // Define relationship here as you would in Models in Rails
   userProducts.associate = function(models) {
+    // User.hasMany(models.userProducts)
     userProducts.belongsTo(models.User)
-    userProducts.belongsTo(models.Product)
+    userProducts.belongsTo(models.Products)
   }
 
   return userProducts

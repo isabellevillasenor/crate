@@ -1,6 +1,6 @@
-"use strict";
+
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  up: function(queryInterface, Sequelize) {
     return queryInterface.createTable("crateProducts", {
       id: {
         allowNull: false,
@@ -22,6 +22,7 @@ module.exports = {
           model: "products",
           key: "id"
         },
+        allowNull: false
       }
     });
   },
