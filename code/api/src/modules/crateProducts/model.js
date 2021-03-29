@@ -10,11 +10,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER
     }
   })
-// Define relationship here as you would in Models in Rails
-  crateProducts.associate = function(models) {
-    crateProducts.belongsTo(models.Crate)
-    crateProducts.belongsTo(models.Products)
-  }
+// DONT Define relationship here as you would in Models in Rails
+// (for a joins table)
 
   return crateProducts
 }
