@@ -12,7 +12,9 @@ const Profile = () => (
     <Helmet>
       <title>My Profile - Crate</title>
     </Helmet>
-      <MyAccount />
+
+    <MyAccount />
+    
   </div>
 )
 
