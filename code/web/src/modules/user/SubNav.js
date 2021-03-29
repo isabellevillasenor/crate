@@ -16,7 +16,14 @@ import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 
 const SubNav = (props) => {
+  const currentPage = window.location.pathname
+  const checkColor = linkName => {
+    return currentPage === linkName 
+      ? 'secondary'
+      : 'primary'
+  }
   {/*
+    
     I'm trying to set up for setting the theme as either 'primary' (purple) or 'secondary' (orange) depending on which subtab is open.
 
     I think I'm close, but not quite.
@@ -36,11 +43,11 @@ const SubNav = (props) => {
         <GridCell style={{ padding: '2em', textAlign: 'center' }}>
 
         <Link to={userRoutes.profile.path}>
-          <Button theme='primary' style={{ marginLeft: '1em' }}>My Account</Button>
+          <Button theme={checkColor('/user/profile')} style={{ marginLeft: '1em' }}>My Account</Button>
         </Link>
 
         <Link to={userRoutes.products.path}>
-          <Button theme='primary' style={{ marginLeft: '1em' }}>My Products</Button>
+          <Button theme={checkColor('/user/my-products')} style={{ marginLeft: '1em' }}>My Products</Button>
         </Link>
 
         <Button onClick={props.logout} theme="primary" style={{ marginLeft: '1em' }}>Logout</Button>
