@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "isabellevillasenor",
+    "password": null,
+    "database": "crate",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
