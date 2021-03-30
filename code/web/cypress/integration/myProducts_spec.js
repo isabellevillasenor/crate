@@ -39,5 +39,9 @@ describe('My Products', () => {
       .get('div button').contains('My Products').click()
     //this might need to change depending on what's generate in the seeder data
     cy.get('div button').eq(3).click()
+    cy.get('div table tbody tr').first()
+      .should('be.visible').and('have.length', '1')
+    cy.get('div table tbody tr').first()
+      .get('td').eq(4).contains('⭐️')
   })
 })
