@@ -1,0 +1,10 @@
+{
+  "development": {
+    "username": "tashiadavis",
+    "password": null,
+    "database": "crate",
+    "host": "localhost",
+    "dialect": "postgres",
+    "seederStorage": "sequelize"
+  }
+}
