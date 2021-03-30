@@ -58,7 +58,7 @@ class MyProducts extends PureComponent {
           <Grid alignCenter={true} style={{ padding: '1em' }}>
             <GridCell style={{ textAlign: 'right' }}>
               <Button theme="primary" style={{ marginTop: '1em' }} onClick={this.toggleKept} >
-                Toggle Kept Products
+                {this.state.viewAll ? 'Show Kept' : 'Show All'}
               </Button>
             </GridCell>
           </Grid>
