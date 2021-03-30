@@ -53,7 +53,7 @@ class MyProducts extends PureComponent {
         <SubNav />
         {/* Page Content */}
         <div>
-          <H3>Delivery History</H3>
+          <H4 style={{textAlign: 'center', margin: '1em'}}>Delivery History</H4>
           {/* Top actions bar */}
           <Grid alignCenter={true} style={{ padding: '1em' }}>
             <GridCell style={{ textAlign: 'right' }}>
