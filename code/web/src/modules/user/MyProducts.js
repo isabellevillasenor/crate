@@ -28,8 +28,14 @@ class MyProducts extends PureComponent {
   }
 
   toggleKept = () => {
-    // event.preventDefault()
     this.setState({ viewAll: !this.state.viewAll })
+  }
+
+  displayKept = (keptStatus) => {
+    if (this.state.viewAll || keptStatus) {
+      return 'visible'
+    }
+    return 'hidden'
   }
 
   render() {
@@ -46,12 +52,12 @@ class MyProducts extends PureComponent {
         <SubNav />
         {/* Page Content */}
         <div>
-          <H3>Delivery History</H3>
+          <H4 style={{textAlign: 'center', margin: '1em'}}>Delivery History</H4>
           {/* Top actions bar */}
           <Grid alignCenter={true} style={{ padding: '1em' }}>
             <GridCell style={{ textAlign: 'right' }}>
               <Button theme="primary" style={{ marginTop: '1em' }} onClick={this.toggleKept} >
-                Toggle Kept Products
+                {this.state.viewAll ? 'Show Kept' : 'Show All'}
               </Button>
             </GridCell>
           </Grid>
@@ -72,7 +78,7 @@ class MyProducts extends PureComponent {
                 {/*This is where we'll map through all state user products and return the tr:*/}
                 {/*this.userProducts.map(product => {
                   return (
-                    <tr key={product.id} { !this.state.viewAll && !product.kept && styles={{ visibility: 'hidden' }} }>
+                    <tr key={product.id} style={{ visibility: `${this.displayKept(product.kept)}` }} }>
                       <td>
                         <img src={product.image} alt='product image' />
                       </td>
@@ -93,7 +99,7 @@ class MyProducts extends PureComponent {
                 })*/}
 
                 <tbody>
-                  <tr key={666} styles={{ display: this.state.viewAll && kept ? 'block' : 'none' }}>
+                  <tr key={666} style={{ visibility: `${this.displayKept(kept)}` }}>
                     <td>
                     <img src='https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=100:*' alt='profile image' />
 
@@ -111,7 +117,7 @@ class MyProducts extends PureComponent {
                       {kept && <p>⭐️</p>}
                     </td>
                   </tr>
-                  <tr key={667} styles={{ display: this.state.viewAll && kept2 ? 'block' : 'none' }}>
+                  <tr key={667} style={{ visibility: `${this.displayKept(kept2)}` }}>
                     <td>
                     <img src='https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=100:*' alt='profile image' />
 

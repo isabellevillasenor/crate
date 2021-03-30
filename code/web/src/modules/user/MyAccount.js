@@ -72,7 +72,7 @@ class MyAccount extends PureComponent {
   renderDescriptionDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black, maxHeight: '40%', overflow: 'scroll' }}>{this.state.description}</p>
+        <p style={{ color: black, overflow: 'scroll' }}>{this.state.description}</p>
         <Button
           type="submit"
           theme="secondary"
