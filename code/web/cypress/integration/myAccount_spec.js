@@ -31,24 +31,35 @@ describe('Crate User Account Page', () => {
         .get('form').find('.description').should('contain', 'Pickled hops explosion faux bacon food carts Vera Katz Ruby Jewel animal welfare west hills money tall boys stumptown dreadlocks cashew cheese Impossible Burger smoked ham ice cream a dog gym. No, You Go stumptown Portlandia plaid evergreens IPA co-op its raining again bubble tea Beaverton late-night happy hours neckbeard nothin muffin pearl district First Thursdays Rocky Butte. Flannel bicycle rights sustainable Santacon mustachioed bartenders beardfest 82nd Avenue of Roses gentrification clouds Snowpacolypse frozen fog dog parks scenester Silicon Forest. Kristian Foden-Vencil fifth quadrant microbrew vegan Gresham Alberta Hawthorne breweries wood-fired oven punk rock Hood to Coast veggie burger DIY Alberta Arts nanobrewery')
       cy
         .get('form').get('jsx-2258186958:first ').click()
-        //finish test to test edit functionality of description
+        //finish test to test edit functionality of description and check the new description
   
-})
+  })
 
   it('Should show users email and option to edit their email', () => {
       cy
         .get('form').find('.email').should('contain', 'user@crate.com')
       cy
-        .get('form ').find('jsx-2258186958 ').eq(2).should('have.attr', 'type', 'submit').click()
-        //finish test to for editing email
+        .get('form ').find('jsx-2258186958 ').eq(1).should('have.attr', 'type', 'submit').click()
+        //finish test to for editing email and checking the new inputted email
   })
 
   it('Should show users mailing address and option to edit their address', () => {
       cy
-        .get('form').find('.email').should('contain', 'user@crate.com')
+        .get('form').find('.address').should('contain', '1675 E 45th Dr, Denver, CO')
       cy
         .get('form ').find('jsx-2258186958 ').eq(2).should('have.attr', 'type', 'submit').click()
-        //finish test to for editing email
+        //finish test to for editing address and checking the new submitted address
+  })
+
+    it('Should show users current delivery date and option to change date in a dropdown', () => {
+      cy
+        .get('form').find('.deliveryDateDisplay').should('contain', 'Current delivery date: Monday')
+      cy
+        .get('form ').find('.deliveryDate').click()
+        //finish choosing which day to change to and checking the updated date
+        //this is all subject to change depending on how we decide to display this after API contract
+      cy  
+        .get('form ').find('jsx-2258186958 ').eq(3).should('have.attr', 'type', 'submit').click()
   })
 
 })

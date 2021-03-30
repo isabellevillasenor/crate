@@ -65,7 +65,7 @@ const MyAccount = (props) => (
 
             {/* Delivery Date */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <p style={{ color: grey2, marginBottom: '1.5em' }}>Current delivery date: Monday</p>
+              <p className='deliveryDateDisplay' style={{ color: grey2, marginBottom: '1.5em' }}>Current delivery date: Monday</p>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Select name='deliveryDate'>
                   <option value='Monday'>Monday</option>
