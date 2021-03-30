@@ -48,6 +48,43 @@ class MyAccount extends PureComponent {
     })
   }
 
+  renderDescriptionEditView = () => {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Textarea
+          type='textarea'
+          name='description'
+          value={this.state.description}
+          onChange={this.handleChange}
+        />
+        <Button
+          type="submit"
+          theme="secondary"
+          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
+          onClick={this.changeDescriptionEditMode}
+        >
+          ✔️
+        </Button>
+      </div>
+    )
+  }
+
+  renderDescriptionDefaultView = () => {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <p style={{ color: black, maxHeight: '40%', overflow: 'scroll' }}>{this.state.description}</p>
+        <Button
+          type="submit"
+          theme="secondary"
+          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
+          onClick={this.changeDescriptionEditMode}
+        >
+          <img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" />
+        </Button>
+      </div>
+    )
+  }
+
   changeEmailEditMode = (event) => {
     event.preventDefault()
 
@@ -80,7 +117,7 @@ class MyAccount extends PureComponent {
   renderEmailDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: grey2 }}>{this.state.email}</p>
+        <p style={{ color: black }}>{this.state.email}</p>
         <Button
           type="submit"
           theme="secondary"
@@ -125,7 +162,7 @@ class MyAccount extends PureComponent {
   renderAddressDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: grey2 }}>{this.state.address}</p>
+        <p style={{ color: black }}>{this.state.address}</p>
         <Button
           type="submit"
           theme="secondary"
@@ -169,22 +206,7 @@ class MyAccount extends PureComponent {
 
                 {/* Personal Description */}
                 <p style={{ color: grey2 }}><strong>Personal Description:</strong></p>
-                <p style={{ color: grey2 }}>{this.state.description}</p>
-                <Textarea
-                  type='textarea'
-                  value=''
-                  name='description'
-                  value={this.state.description}
-                  onChange={this.handleChange}
-                />
-                <Button
-                  type="submit"
-                  theme="secondary"
-                  style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-                  onClick={this.changeDescriptionEditMode}
-                >
-                  <img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" />
-                </Button>
+                {this.state.descriptionEditMode ? this.renderDescriptionEditView() : this.renderDescriptionDefaultView()}
 
               </section>
 
