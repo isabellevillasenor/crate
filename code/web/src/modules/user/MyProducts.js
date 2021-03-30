@@ -28,7 +28,6 @@ class MyProducts extends PureComponent {
   }
 
   toggleKept = () => {
-    // event.preventDefault()
     this.setState({ viewAll: !this.state.viewAll })
   }
 
@@ -79,7 +78,7 @@ class MyProducts extends PureComponent {
                 {/*This is where we'll map through all state user products and return the tr:*/}
                 {/*this.userProducts.map(product => {
                   return (
-                    <tr key={product.id} { !this.state.viewAll && !product.kept && styles={{ visibility: 'hidden' }} }>
+                    <tr key={product.id} style={{ visibility: `${this.displayKept(product.kept)}` }} }>
                       <td>
                         <img src={product.image} alt='product image' />
                       </td>
