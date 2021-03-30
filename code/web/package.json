@@ -27,6 +27,7 @@
     "@storybook/addons": "^6.0.21",
     "@storybook/react": "^6.0.21",
     "babel-loader": "8.1.0",
+    "cypress": "^6.8.0",
     "dotenv-webpack": "^1.8.0",
     "nodemon": "2.0.4",
     "webpack": "4.44.2",
@@ -54,5 +55,3 @@
     "validator": "13.1.17"
   }
 }
-
-
