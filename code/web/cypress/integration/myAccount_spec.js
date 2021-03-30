@@ -35,4 +35,20 @@ describe('Crate User Account Page', () => {
   
 })
 
+  it('Should show users email and option to edit their email', () => {
+      cy
+        .get('form').find('.email').should('contain', 'user@crate.com')
+      cy
+        .get('form ').find('jsx-2258186958 ').eq(2).should('have.attr', 'type', 'submit').click()
+        //finish test to for editing email
+  })
+
+  it('Should show users mailing address and option to edit their address', () => {
+      cy
+        .get('form').find('.email').should('contain', 'user@crate.com')
+      cy
+        .get('form ').find('jsx-2258186958 ').eq(2).should('have.attr', 'type', 'submit').click()
+        //finish test to for editing email
+  })
+
 })

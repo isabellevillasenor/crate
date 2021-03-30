@@ -49,7 +49,7 @@ const MyAccount = (props) => (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <p style={{ color: grey2, marginBottom: '1.5em' }}>Email:</p>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Input type='text' value='' name='email' placeholder={props.user.details.email} style={{ textAlign: 'center' }}/>
+                <Input className='email' type='text' value='' name='email' placeholder={props.user.details.email} style={{ textAlign: 'center' }}/>
                 <Button type="submit" theme="secondary" style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}><img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" /></Button>
               </div>
             </div>
@@ -58,7 +58,7 @@ const MyAccount = (props) => (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <p style={{ color: grey2, marginBottom: '1.5em' }}>Address:</p>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Input type='text' value='' name='address' placeholder='1675 E 45th Dr, Denver, CO' />
+                <Input className='address' type='text' value='' name='address' placeholder='1675 E 45th Dr, Denver, CO' />
                 <Button type="submit" theme="secondary" style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}><img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" /></Button>
               </div>
             </div>
