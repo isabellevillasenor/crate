@@ -3,10 +3,10 @@
 
 module.exports = function(sequelize, DataTypes) {
   let crateProducts = sequelize.define('crateProducts', {
-    crate_id: {
+    crateId: {
       type: DataTypes.INTEGER
     },
-    product_id: {
+    productId: {
       type: DataTypes.INTEGER
     }
   })
