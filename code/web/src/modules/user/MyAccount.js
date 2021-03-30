@@ -33,20 +33,24 @@ class MyAccount extends PureComponent {
   }
 
   handleChange = event => {
+    event.preventDefault()
+
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
   changeDescriptionEditMode = () => {
+    event.preventDefault()
+
     this.setState({
-      descriptionEditMode: true
+      descriptionEditMode: !this.state.descriptionEditMode
     })
   }
 
   changeEmailEditMode = (event) => {
     event.preventDefault()
-    
+
     this.setState({
       emailEditMode: !this.state.emailEditMode
     })
@@ -57,9 +61,7 @@ class MyAccount extends PureComponent {
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <Input
           type='text'
-          value=''
           name='email'
-          placeholder=''
           value={this.state.email}
           onChange={this.handleChange}
         />
@@ -92,9 +94,48 @@ class MyAccount extends PureComponent {
   }
 
   changeAddressEditMode = () => {
+    event.preventDefault()
+
     this.setState({
-      addressEditMode: true
+      addressEditMode: !this.state.addressEditMode
     })
+  }
+
+  renderAddressEditView = () => {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Input
+          type='text'
+          name='address'
+          value={this.state.address}
+          onChange={this.handleChange}
+        />
+        <Button
+          type="submit"
+          theme="secondary"
+          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
+          onClick={this.changeAddressEditMode}
+        >
+          ✔️
+        </Button>
+      </div>
+    )
+  }
+
+  renderAddressDefaultView = () => {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <p style={{ color: grey2 }}>{this.state.address}</p>
+        <Button
+          type="submit"
+          theme="secondary"
+          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
+          onClick={this.changeAddressEditMode}
+        >
+          <img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" />
+        </Button>
+      </div>
+    )
   }
 
   render() {
@@ -158,25 +199,7 @@ class MyAccount extends PureComponent {
                 {/* Mailing Address */}
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <p style={{ color: grey2, marginBottom: '1.5em' }}>Address:</p>
-                  <p style={{ color: grey2 }}>{this.state.address}</p>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <Input
-                      type='text'
-                      value=''
-                      name='address'
-                      placeholder=''
-                      value={this.state.address}
-                      onChange={this.handleChange}
-                    />
-                    <Button
-                      type="submit"
-                      theme="secondary"
-                      style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-                      onClick={this.changeAddressEditMode}
-                    >
-                      <img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" />
-                    </Button>
-                  </div>
+                  {this.state.addressEditMode ? this.renderAddressEditView() : this.renderAddressDefaultView()}
                 </div>
 
                 {/* Delivery Date */}
