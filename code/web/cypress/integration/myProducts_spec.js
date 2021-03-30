@@ -26,7 +26,7 @@ describe('My Products', () => {
         .should('have.css', 'background-color', 'rgb(234, 84, 85)')
   })
 
-  it.only('Should display my products', () => {
+  it('Should display my products', () => {
     cy.get('header div').contains('Profile').click()
       .get('div button').contains('My Products').click()
     //this might need to change depending on what's generated in the seeder data
@@ -34,6 +34,10 @@ describe('My Products', () => {
       .should('be.visible').and('have.length', '2')
   })
 
-  it('Should be able to show only kept items', () => {
+  it.only('Should be able to show only kept items', () => {
+    cy.get('header div').contains('Profile').click()
+      .get('div button').contains('My Products').click()
+    //this might need to change depending on what's generate in the seeder data
+    cy.get('div button').eq(3).click()
   })
 })
