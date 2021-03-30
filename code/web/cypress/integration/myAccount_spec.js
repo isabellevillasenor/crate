@@ -62,4 +62,25 @@ describe('Crate User Account Page', () => {
         .get('form ').find('jsx-2258186958 ').eq(3).should('have.attr', 'type', 'submit').click()
   })
 
+    it('Should be able to navigate to My Products page', () => {
+      cy
+        .get('jsx-230203545').find('.jsx-1228826222:first ').should('contain', 'My Products').click()
+      // cy.url().should('include', '/user/my-products')
+      //finish url path
+  })
+
+    it('Should be able to navigate to Subscriptions Page', () => {
+      cy
+        .get('jsx-230203545 ').find('a:first').should('contain', 'Subscriptions').click()
+      // cy.url().should('include', '/user/subscriptions')
+      //finish url path
+  })
+
+    it('Should be able to Logout', () => {
+      cy
+        .get('jsx-230203545').find('.jsx-1228826222 ').eq(1).should('contain', 'Logout').click()
+      // cy.url().should('include', '/')
+      //finish url path
+  })
+
 })
