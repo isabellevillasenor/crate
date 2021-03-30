@@ -26,7 +26,7 @@ const MyAccount = (props) => (
 
         <form style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
-          <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', width: '40%', height: '60vh' }}>
+          <section className='imgAndDescription' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', width: '40%', height: '60vh' }}>
             {/* Profile Image */}
             <div style={{ width: '200px', height: '200px', position: 'relative', overflow: 'hidden', borderRadius: '50%' }}>
               <img
@@ -39,7 +39,7 @@ const MyAccount = (props) => (
 
             {/* Personal Description */}
             <p style={{ color: grey2 }}><strong>Personal Description:</strong></p>
-            <p style={{ color: grey2 }}>Pickled hops explosion faux bacon food carts Vera Katz Ruby Jewel animal welfare west hills money tall boys stumptown dreadlocks cashew cheese Impossible Burger smoked ham ice cream a dog gym. No, You Go stumptown Portlandia plaid evergreens IPA co-op it's raining again bubble tea Beaverton late-night happy hours neckbeard nothin' muffin pearl district First Thursdays Rocky Butte. Flannel bicycle rights sustainable Santacon mustachioed bartenders beardfest 82nd Avenue of Roses gentrification clouds Snowpacolypse frozen fog dog parks scenester Silicon Forest. Kristian Foden-Vencil fifth quadrant microbrew vegan Gresham Alberta Hawthorne breweries wood-fired oven punk rock Hood to Coast veggie burger DIY Alberta Arts nanobrewery.</p>
+            <p className='description' style={{ color: grey2 }}>Pickled hops explosion faux bacon food carts Vera Katz Ruby Jewel animal welfare west hills money tall boys stumptown dreadlocks cashew cheese Impossible Burger smoked ham ice cream a dog gym. No, You Go stumptown Portlandia plaid evergreens IPA co-op it's raining again bubble tea Beaverton late-night happy hours neckbeard nothin' muffin pearl district First Thursdays Rocky Butte. Flannel bicycle rights sustainable Santacon mustachioed bartenders beardfest 82nd Avenue of Roses gentrification clouds Snowpacolypse frozen fog dog parks scenester Silicon Forest. Kristian Foden-Vencil fifth quadrant microbrew vegan Gresham Alberta Hawthorne breweries wood-fired oven punk rock Hood to Coast veggie burger DIY Alberta Arts nanobrewery.</p>
             {/*<Textarea type='textarea' value='' name='description' placeholder='' /> HAVE THIS APPEAR ON CLICK*/}
             <Button type="submit" theme="secondary" style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }} ><img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" /></Button>
           </section>
