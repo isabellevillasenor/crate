@@ -1,11 +1,12 @@
 //baseURL represents the landing page of "Profile" which displays "My Account"
-const baseURL = 'http://localhost:3000/user/profile';
+const baseURL = 'http://localhost:3000/crates';
 const myProducts = 'http://localhost:3000/user/my-products';
 
 describe('My Products', () => {
   beforeEach(() => {
     cy.visit(baseURL);
     //Login to Seeder
+    //Seeder contains subscriptions
     cy.get('header div a').contains('Login').click()
     cy.get('div div')
       .get('input[type=email]')
@@ -16,29 +17,23 @@ describe('My Products', () => {
   })
 
   it('Should navigate from Profile/My Accounts to My Products page', () => {
-    cy.get('header div a').contains('Profile').click()
+    cy.get('header div').contains('Profile').click()
       .get('div button').contains('My Products').click()
       .location().should(loc => {
         expect(loc.pathname).to.eq('/user/my-products')
     })
+      .get('div button').eq(1)
+        .should('have.css', 'background-color', 'rgb(234, 84, 85)')
   })
 
-  it('Should navigate from Seen List', () => {
-    cy.get('main nav').contains('Seen').click()
-      .get('section table tbody tr td a').first().click()
-      .location().should(loc => {
-        expect(loc.pathname).to.eq('/bird_details/sheowl')
-    })
+  it.only('Should display my products', () => {
+    cy.get('header div').contains('Profile').click()
+      .get('div button').contains('My Products').click()
+    //this might need to change depending on what's generated in the seeder data
+    cy.get('div table tbody tr')
+      .should('be.visible').and('have.length', '2')
   })
 
-  it('Should tell us about a bird', () => {
-    cy.get('main nav').contains('Seen').click()
-    .get('section table tbody tr td a').first().click()
-    .get('h2').contains('Short')
-    .get('article')
-    .get('img').should('have.attr', 'src', 'https://www.allaboutbirds.org/guide/assets/photo/37180721-1280px.jpg')
-    .get('h3').contains('Short')
-    .get('h4').contains('Asio')
-    .get('a').should('have.attr', 'href', 'https://www.allaboutbirds.org/guide/Short-eared_Owl/')
+  it('Should be able to show only kept items', () => {
   })
 })
