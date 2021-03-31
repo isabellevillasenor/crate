@@ -37,7 +37,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role}', 'token']
+      fields: ['user {name, email, role, address, description, image, products}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -121,18 +121,18 @@ export function getGenders() {
 
 
 //These are for the 'my-account' page
-//Get user data 
-export function getUserData(ID) {
-  return axios.get(routeApi, `query({
-    user(id: $id) {
-      name 
-      email
-      address
-      description
-      image
-    }
-  })`)
-}
+//Get user data
+// export function getUserData(ID) {
+//   return axios.post(routeApi, query({
+//     user(id: $id) {
+//       name
+//       email
+//       address
+//       description
+//       image
+//     }
+//   }))
+// }
 
 //Mutate profile data (email, address, description)
 export function updateUserProfile(updatedDetail, field) {
@@ -140,8 +140,8 @@ export function updateUserProfile(updatedDetail, field) {
     return axios.post(routeApi, mutation({
       operation: 'userUpdate',
       variables: updatedDetail,
-      fields: [field] 
-    }).then(response => {
+      fields: [field]
+    })).then(response => {
 
 
       return dispatch({
@@ -164,11 +164,11 @@ export function getUserProduct(userID) {
   let queryObject = query({
     operation: 'getUserProduct',
     variables: userID,
-    fields: ['image', 'name', 'description', 'deliveredDate', 'kept'] 
+    fields: ['image', 'name', 'description', 'deliveredDate', 'kept']
   })
   return dispatch => {
     return axios.post(routeApi, queryObject).then(response => {
-      return dispatch({ 
+      return dispatch({
         type: GET_PRODUCTS,
         user,
       })
@@ -176,7 +176,7 @@ export function getUserProduct(userID) {
   }
 }
 
-//Mutate profile delivery dates 
+//Mutate profile delivery dates
 //this needs to be mapped over all the users' subscriptions and called for every subscription
 export function updateUserProductsDeliveryDate(listOfUserProducts, updatedDate) {
   listOfUserProducts.forEach(product => {
@@ -184,15 +184,17 @@ export function updateUserProductsDeliveryDate(listOfUserProducts, updatedDate) 
       return axios.post(routeApi, mutation({
         operation: 'subscriptionUpdate',
         variables: updatedDate,
-        fields: [product.deliveryDate] 
-      }).then(response => {
+        fields: [product.deliveryDate]
+      })).then(response => {
         if (!response.status === 200) {
           throw new Error('Whoops, something went wrong')
-        } 
+        }
         const product = response.data.product
-        return dispatch({ 
+        return dispatch({
           type: UPDATE_PRODUCTS,
           user,
         })
+      })
+    }
   })
 }
