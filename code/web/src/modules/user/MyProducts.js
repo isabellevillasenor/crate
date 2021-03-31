@@ -15,7 +15,7 @@ import { grey, grey2, black } from '../../ui/common/colors'
 //App Imports
 import SubNav from './SubNav'
 import userRoutes from '../../setup/routes/user'
-import { logout } from './api/actions'
+import { logout, getUserProducts } from './api/actions'
 
 class MyProducts extends PureComponent {
 
@@ -23,7 +23,7 @@ class MyProducts extends PureComponent {
     super(props)
 
     this.state = {
-      viewAll: true
+      viewAll: true,
     }
   }
 

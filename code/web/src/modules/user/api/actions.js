@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { query, mutation } from 'gql-query-builder'
 import cookie from 'js-cookie'
+import { number } from 'prop-types'
 
 // App Imports
 import { routeApi } from '../../../setup/routes'
@@ -116,4 +117,82 @@ export function getGenders() {
       fields: ['id', 'name']
     }))
   }
+}
+
+
+//These are for the 'my-account' page
+//Get user data 
+export function getUserData(ID) {
+  return axios.get(routeApi, `query({
+    user(id: $id) {
+      name 
+      email
+      address
+      description
+      image
+    }
+  })`)
+}
+
+//Mutate profile data (email, address, description)
+export function updateUserProfile(updatedDetail, field) {
+  return dispatch => {
+    return axios.post(routeApi, mutation({
+      operation: 'userUpdate',
+      variables: updatedDetail,
+      fields: [field] 
+    }).then(response => {
+
+
+      return dispatch({
+        type: UPDATE_PROFILE,
+        user
+      })
+    })
+  }
+}
+
+
+
+
+
+//This is for the 'my-products' page
+//get delivery history (all products)
+//specifies that for each product in that list of 'productids', we want a subset of the product information
+// image, name, description, delivered date, kept
+export function getUserProduct(userID) {
+  let queryObject = query({
+    operation: 'getUserProduct',
+    variables: userID,
+    fields: ['image', 'name', 'description', 'deliveredDate', 'kept'] 
+  })
+  return dispatch => {
+    return axios.post(routeApi, queryObject).then(response => {
+      return dispatch({ 
+        type: GET_PRODUCTS,
+        user,
+      })
+    })
+  }
+}
+
+//Mutate profile delivery dates 
+//this needs to be mapped over all the users' subscriptions and called for every subscription
+export function updateUserProductsDeliveryDate(listOfUserProducts, updatedDate) {
+  listOfUserProducts.forEach(product => {
+    return dispatch => {
+      return axios.post(routeApi, mutation({
+        operation: 'subscriptionUpdate',
+        variables: updatedDate,
+        fields: [product.deliveryDate] 
+      }).then(response => {
+        if (!response.status === 200) {
+          throw new Error('Whoops, something went wrong')
+        } 
+        const product = response.data.product
+        return dispatch({ 
+          type: UPDATE_PRODUCTS,
+          user,
+        })
+  })
 }

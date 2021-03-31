@@ -43,6 +43,12 @@ export default (state = userInitialState, action) => {
         details: null
       }
 
+    case UPDATE_PROFILE:
+      return {
+        ...state,
+        details: action.user
+      }
+
     default:
       return state
   }

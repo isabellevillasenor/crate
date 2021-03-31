@@ -16,6 +16,9 @@ import SubNav from './SubNav'
 import { logout } from './api/actions'
 import { APP_URL } from '../../setup/config/env'
 
+//API Import
+import updateUserData from './api/actions'
+
 class MyAccount extends PureComponent {
 
   constructor(props) {
@@ -61,7 +64,7 @@ class MyAccount extends PureComponent {
           type="submit"
           theme="secondary"
           style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={this.changeDescriptionEditMode}
+          onClick={this.changeDescriptionEditMode} //add updateUserData(textareainput, 'description')
         >
           ✔️
         </Button>
