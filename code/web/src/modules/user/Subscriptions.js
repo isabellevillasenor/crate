@@ -32,7 +32,7 @@ class Subscriptions extends PureComponent {
     props.getListByUser()
   }
 
-
+//Where does this need to be called? I wasn't sure of the logic, so I stuck with the hard coded data for now.
   renderSubscriptions = () => {
     return [subscriptions].map(subscription => {
       return (
@@ -95,26 +95,26 @@ class Subscriptions extends PureComponent {
                       <>
                         <div key={subscription.id} style={{ margin: '2em', float: 'left' }}>
                           <SubscriptionItem subscription={subscription} />
-                        </div>
-                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                          <p style={{ color: grey2, marginBottom: '1.5em' }}>Current delivery date: {subscription.deliveryDate}</p>
-                          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <Select name='deliveryDate'>
-                              <option value='Monday'>Monday</option>
-                              <option value='Tuesday'>Tuesday</option>
-                              <option value='Wednesday'>Wednesday</option>
-                              <option value='Thursday'>Thursday</option>
-                              <option value='Friday'>Friday</option>
-                              <option value='Saturday'>Saturday</option>
-                              <option value='Sunday'>Sunday</option>
-                            </Select>
-                            <Button
-                              type="submit"
-                              theme="secondary"
-                              style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em', color: black }}
-                            >
-                              Submit
-                            </Button>
+                          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <p style={{ color: grey2, marginBottom: '1.5em', marginTop: '1.5em' }}>Current delivery date: {subscription.deliveryDate}</p>
+                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                              <Select name='deliveryDate'>
+                                <option value='Monday'>Monday</option>
+                                <option value='Tuesday'>Tuesday</option>
+                                <option value='Wednesday'>Wednesday</option>
+                                <option value='Thursday'>Thursday</option>
+                                <option value='Friday'>Friday</option>
+                                <option value='Saturday'>Saturday</option>
+                                <option value='Sunday'>Sunday</option>
+                              </Select>
+                              <Button
+                                type="submit"
+                                theme="secondary"
+                                style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
+                              >
+                                Submit
+                              </Button>
+                            </div>
                           </div>
                         </div>
                       </>))
