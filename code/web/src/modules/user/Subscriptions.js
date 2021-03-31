@@ -93,6 +93,7 @@ class Subscriptions extends PureComponent {
                 : this.props.subscriptions.list.length > 0
                     ? this.props.subscriptions.list.map(subscription => (
                       <>
+                      {/* Below, I included the select date to be apart of the subscription. Before, they rendered as two separate elements. This also gets rid of the need for a key for the input. */}
                         <div key={subscription.id} style={{ margin: '2em', float: 'left' }}>
                           <SubscriptionItem subscription={subscription} />
                           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
