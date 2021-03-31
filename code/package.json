@@ -11,7 +11,8 @@
     "setup:mobile": "npm install --prefix mobile",
     "start": "concurrently 'npm run start:web' 'npm run start:api' --kill-others --names 'web,api'",
     "start:web": "npm run start --prefix web",
-    "start:api": "npm run start --prefix api"
+    "start:api": "npm run start --prefix api",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
+    "jest": "^26.6.3",
     "sequelize-cli": "^6.2.0"
   }
 }
