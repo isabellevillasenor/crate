@@ -9,19 +9,19 @@ describe('Crate User Account Page', () => {
       .get('.jsx-2258186958 ').click()
     cy.wait(2000)
     cy  
-      .get('.jsx-230203545 ').eq(2).click()
+      .get('.jsx-230203545 ').eq(1).find('a').eq(2).click()
   })
 
   it('Should be able to visit the users account page that includes a sub nav with three buttons and a main profile section with the users name at the top', () => {
+      // cy
+      //   .get('.jsx-230203545').eq(2).children('have.length', 3)
       cy
-        .get('.jsx-856475002').find('.jsx-230203545').eq(1).children('have.length', 3)
-      cy
-        .get('jsx-230203545 ').find('h4').should('contain', 'The User')
+        .get('h4').should('contain', 'The User')
   })
 
-  it.skip('Should have a profile image and option to upload a new profile image', () => {
+  it('Should have a profile image and option to upload a new profile image', () => {
       cy
-        .get('form').find('img').should('have.attr', 'src', 'src="https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*"')
+        .get('form').find('img').should('have.attr', 'src', 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*')
       cy
         .get('jsx-jsx-1535210663 file-upload ').find('input').should('have.attr', 'type', 'file').click()
         //finish test to actually choose a file to upload and check src of new image
