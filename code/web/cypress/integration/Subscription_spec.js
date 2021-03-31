@@ -27,14 +27,11 @@ describe('Subscriptions', () => {
 
   it.only('Should be able to edit delivery date', () => {
     cy.get('header div').contains('Subscriptions').click()
-    cy.get('.jsx-230203545 div div')
-    //I've run into some complicated testing errors because it seems as if ownership of the select/input isn't clear to Cypress. I've tried a few different methodologies, however, I can't seem to get access to what I need to.
-    //Below is essentially the commands needed once the correct div is isolated
-    /*
+    cy.get('.subscription-update')
       .get('select').should('have.value', 'Monday')
       .get('select').select('Thursday')
-      .get('button').click()
+      .get('button').eq(1).click()
       .get('select').should('have.value', 'Thursday')
-        */
+
   })
 })
