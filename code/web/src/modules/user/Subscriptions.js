@@ -25,8 +25,42 @@ class Subscriptions extends PureComponent {
 
   // Runs on client only
   componentDidMount() {
-    this.props.getListByUser()
+    this.
+    props.getListByUser()
   }
+
+
+  renderSubscriptions = () => {
+    return [subscriptions].map(subscription => {
+      return (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <p style={{ color: grey2, marginBottom: '1.5em' }}>Current delivery date: {subscription.deliveryDate}</p>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Select name='deliveryDate'>
+              <option value='Monday'>Monday</option>
+              <option value='Tuesday'>Tuesday</option>
+              <option value='Wednesday'>Wednesday</option>
+              <option value='Thursday'>Thursday</option>
+              <option value='Friday'>Friday</option>
+              <option value='Saturday'>Saturday</option>
+              <option value='Sunday'>Sunday</option>
+            </Select>
+            <Button
+              type="submit"
+              theme="secondary"
+              style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em', color: black }}
+            >
+              Submit
+            </Button>
+          </div>
+        </div>
+        
+      )
+    })
+ 
+  }
+        
+ 
 
   render() {
     return (
@@ -55,11 +89,33 @@ class Subscriptions extends PureComponent {
                 ? <Loading/>
                 : this.props.subscriptions.list.length > 0
                     ? this.props.subscriptions.list.map(subscription => (
+                      <>
                         <div key={subscription.id} style={{ margin: '2em', float: 'left' }}>
                           <SubscriptionItem subscription={subscription} />
                         </div>
-                      ))
-                    : <EmptyMessage message="You are not subscribed to any crates yet." />
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                          <p style={{ color: grey2, marginBottom: '1.5em' }}>Current delivery date: {subscription.deliveryDate}</p>
+                          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <Select name='deliveryDate'>
+                              <option value='Monday'>Monday</option>
+                              <option value='Tuesday'>Tuesday</option>
+                              <option value='Wednesday'>Wednesday</option>
+                              <option value='Thursday'>Thursday</option>
+                              <option value='Friday'>Friday</option>
+                              <option value='Saturday'>Saturday</option>
+                              <option value='Sunday'>Sunday</option>
+                            </Select>
+                            <Button
+                              type="submit"
+                              theme="secondary"
+                              style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em', color: black }}
+                            >
+                              Submit
+                            </Button>
+                          </div>
+                        </div>
+                      </>))
+                      : <EmptyMessage message="You are not subscribed to any crates yet." />
             }
           </GridCell>
         </Grid>
