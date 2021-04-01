@@ -13,17 +13,14 @@ import { grey2, black } from '../../ui/common/colors'
 
 //App Imports
 import SubNav from './SubNav'
-import { logout } from './api/actions'
+import { logout, updateUserProfile } from './api/actions'
 import { APP_URL } from '../../setup/config/env'
-
-//API Import
-import updateUserData from './api/actions'
 
 class MyAccount extends PureComponent {
 
   constructor(props) {
     super(props)
-
+    //state needs to be updated to reflect store
     this.state = {
       image: '',
       description: 'Fashion lover!',
@@ -91,9 +88,14 @@ class MyAccount extends PureComponent {
   changeEmailEditMode = (event) => {
     event.preventDefault()
 
+    if(this.state.emailEditMode) {
+      updateUserProfile(this.state.email, 'email')
+    }
+
     this.setState({
       emailEditMode: !this.state.emailEditMode
     })
+
   }
 
   renderEmailEditView = () => {
@@ -273,4 +275,4 @@ function profileState(state) {
   }
 }
 
-export default connect(profileState, { logout })(MyAccount)
+export default connect(profileState, { logout, updateUserProfile })(MyAccount)

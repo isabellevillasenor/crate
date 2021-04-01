@@ -12,6 +12,7 @@ export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
+export const UPDATE_PROFILE = 'UPDATE_PROFILE'
 
 // Actions
 
@@ -37,7 +38,7 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role, address, description, image, products}', 'token']
+      fields: ['user {name, email, role}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -136,20 +137,42 @@ export function getGenders() {
 
 //Mutate profile data (email, address, description)
 export function updateUserProfile(updatedDetail, field) {
-  return dispatch => {
-    return axios.post(routeApi, mutation({
-      operation: 'userUpdate',
-      variables: updatedDetail,
-      fields: [field]
-    })).then(response => {
+  // return dispatch =>
 
-
-      return dispatch({
-        type: UPDATE_PROFILE,
-        user
-      })
-    })
-  }
+    // return axios.post(routeApi, mutation({
+    //   operation: 'userUpdate',
+    //   variables: updatedDetail,
+    //   fields: [field]
+    // })).then(response => {
+    //
+    console.log('in updateUserProfile', updatedDetail)
+      return dispatch => {
+        return dispatch({
+          type: UPDATE_PROFILE,
+          user: {
+            "name": "The User",
+            "role": "USER",
+            "email": updatedDetail,
+            "address": null,
+            "description": null,
+            "image": null,
+            "products": [
+              {
+                "name": "Belt for Women",
+                "description": "A very nice belt for women.",
+                "image": "/images/stock/belt-female.jpg"
+              },
+              {
+                "name": "T-Shirt for Women - Black",
+                "description": "A very nice black t-shirt for women.",
+                "image": "/images/stock/t-shirt-female-1.jpg"
+              }
+            ]
+          }
+        })
+    }
+    // })
+  // }
 }
 
 
