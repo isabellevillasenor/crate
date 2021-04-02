@@ -22,14 +22,44 @@ class MyAccount extends PureComponent {
     super(props)
     //state needs to be updated to reflect store
     this.state = {
-      image: '',
-      description: 'Fashion lover!',
-      email: 'user@crate.com',
-      address: '7575 E 57th Dr, Denver, CO, 12543',
+      // image: 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*',
+      description: '',
+      email: this.props.user.details.email,
+      address: '',
       descriptionEditMode: false,
       emailEditMode: false,
       addressEditMode: false
     }
+  }
+
+  componentDidMount() {
+
+  //   let address = ''
+  //   let description = ''
+  //   // let image = 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*'
+  //   let userDetails;
+  //
+  //   if (this.props.user.details.address) {
+  //     address = this.props.user.details.address
+  //   }
+  //
+  //   if (this.props.user.details.description) {
+  //     description = this.props.user.details.description
+  //   }
+  //
+  //   // if (this.props.user.details.image) {
+  //   //   image = this.props.user.details.image
+  //   // }
+  //
+  //   userDetails = {
+  //     id: this.props.user.details.id,
+  //     // image: image,
+  //     email: this.props.user.details.email,
+  //     address: address,
+  //     description: description
+  //   }
+  //
+  //   this.setState({ userDetails })
   }
 
   handleChange = event => {
@@ -187,7 +217,7 @@ class MyAccount extends PureComponent {
 
         <Grid>
           <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-            <H4 style={{ marginBottom: '0.5em' }}>User's Name</H4>
+            <H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
 
             <form style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 

@@ -12,7 +12,7 @@ export const LOGIN_REQUEST = 'AUTH/LOGIN_REQUEST'
 export const LOGIN_RESPONSE = 'AUTH/LOGIN_RESPONSE'
 export const SET_USER = 'AUTH/SET_USER'
 export const LOGOUT = 'AUTH/LOGOUT'
-export const UPDATE_PROFILE = 'UPDATE_PROFILE'
+export const UPDATE_PROFILE = 'AUTH/UPDATE_PROFILE'
 
 // Actions
 
@@ -145,30 +145,33 @@ export function updateUserProfile(updatedDetail, field) {
     //   fields: [field]
     // })).then(response => {
     //
+
     console.log('in updateUserProfile', updatedDetail)
       return dispatch => {
+        const user = {
+          "name": "The User",
+          "role": "USER",
+          "email": updatedDetail,
+          "address": null,
+          "description": null,
+          "image": null,
+          "products": [
+            {
+              "name": "Belt for Women",
+              "description": "A very nice belt for women.",
+              "image": "/images/stock/belt-female.jpg"
+            },
+            {
+              "name": "T-Shirt for Women - Black",
+              "description": "A very nice black t-shirt for women.",
+              "image": "/images/stock/t-shirt-female-1.jpg"
+            }
+          ]
+        }
+
         return dispatch({
           type: UPDATE_PROFILE,
-          user: {
-            "name": "The User",
-            "role": "USER",
-            "email": updatedDetail,
-            "address": null,
-            "description": null,
-            "image": null,
-            "products": [
-              {
-                "name": "Belt for Women",
-                "description": "A very nice belt for women.",
-                "image": "/images/stock/belt-female.jpg"
-              },
-              {
-                "name": "T-Shirt for Women - Black",
-                "description": "A very nice black t-shirt for women.",
-                "image": "/images/stock/t-shirt-female-1.jpg"
-              }
-            ]
-          }
+          user
         })
     }
     // })
