@@ -151,47 +151,13 @@ export function updateUserProfile(updatedDetail, field) {
     "email": updatedDetail,
   }
 
-  return dispatch({
-    type: UPDATE_PROFILE,
-    user
-  })
-
-  // console.log('in updateUserProfile', updatedDetail)
-  //     return dispatch => {
-  //       console.log('in dispatch', updatedDetail)
-  //       const user = {
-  //         "name": "The User",
-  //         "role": "USER",
-  //         "email": updatedDetail,
-  //         // "address": null,
-  //         // "description": null,
-  //         // "image": null,
-  //         // "products": [
-  //         //   {
-  //         //     "name": "Belt for Women",
-  //         //     "description": "A very nice belt for women.",
-  //         //     "image": "/images/stock/belt-female.jpg"
-  //         //   },
-  //         //   {
-  //         //     "name": "T-Shirt for Women - Black",
-  //         //     "description": "A very nice black t-shirt for women.",
-  //         //     "image": "/images/stock/t-shirt-female-1.jpg"
-  //         //   }
-  //         // ]
-  //       }
-  //
-  //       return dispatch({
-  //         type: UPDATE_PROFILE,
-  //         user
-  //       })
-  //   }
-    // })
-  // }
+  return dispatch => {
+    dispatch({
+      type: UPDATE_PROFILE,
+      user
+    })
+  }
 }
-
-
-
-
 
 //This is for the 'my-products' page
 //get delivery history (all products)
