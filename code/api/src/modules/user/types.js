@@ -1,5 +1,8 @@
 // Imports
-import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql'
+import { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLList } from 'graphql'
+import { ProductType } from '../product/types'
+
+
 
 // User type
 const UserType = new GraphQLObjectType({
@@ -16,7 +19,8 @@ const UserType = new GraphQLObjectType({
     address: { type: GraphQLString },
     description: { type: GraphQLString },
     createdAt: { type: GraphQLString },
-    updatedAt: { type: GraphQLString }
+    updatedAt: { type: GraphQLString },
+    products: { type: new GraphQLList(ProductType)}
   })
 })
 
