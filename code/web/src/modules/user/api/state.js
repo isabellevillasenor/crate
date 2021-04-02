@@ -44,7 +44,7 @@ export default (state = userInitialState, action) => {
       }
 
     case UPDATE_PROFILE:
-      console.log('setting user', action.user)
+      console.log('update profile', action.user)
       return {
         ...state,
         details: action.user

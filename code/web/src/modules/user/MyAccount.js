@@ -115,17 +115,24 @@ class MyAccount extends PureComponent {
     )
   }
 
-  changeEmailEditMode = (event) => {
+  changeEmailEditMode = () => {
     event.preventDefault()
 
-    if(this.state.emailEditMode) {
-      updateUserProfile(this.state.email, 'email')
-    }
+    // if(this.state.emailEditMode) {
+    //   updateUserProfile(this.state.email, 'email')
+    // }
 
     this.setState({
       emailEditMode: !this.state.emailEditMode
     })
+  }
 
+  updateUserEmail = (event) => {
+    event.preventDefault()
+
+    this.changeEmailEditMode()
+
+    updateUserProfile(this.state.email, 'email')
   }
 
   renderEmailEditView = () => {
@@ -141,7 +148,7 @@ class MyAccount extends PureComponent {
           type="submit"
           theme="secondary"
           style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={this.changeEmailEditMode}
+          onClick={this.updateUserEmail}
         >
           ✔️
         </Button>

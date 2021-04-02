@@ -138,42 +138,53 @@ export function getGenders() {
 //Mutate profile data (email, address, description)
 export function updateUserProfile(updatedDetail, field) {
   // return dispatch =>
+  //   return axios.post(routeApi, mutation({
+  //     operation: 'userUpdate',
+  //     variables: updatedDetail,
+  //     fields: [field]
+  //   })).then(response => {
+  //
 
-    // return axios.post(routeApi, mutation({
-    //   operation: 'userUpdate',
-    //   variables: updatedDetail,
-    //   fields: [field]
-    // })).then(response => {
-    //
+  const user = {
+    "name": "The User",
+    "role": "USER",
+    "email": updatedDetail,
+  }
 
-    console.log('in updateUserProfile', updatedDetail)
-      return dispatch => {
-        const user = {
-          "name": "The User",
-          "role": "USER",
-          "email": updatedDetail,
-          "address": null,
-          "description": null,
-          "image": null,
-          "products": [
-            {
-              "name": "Belt for Women",
-              "description": "A very nice belt for women.",
-              "image": "/images/stock/belt-female.jpg"
-            },
-            {
-              "name": "T-Shirt for Women - Black",
-              "description": "A very nice black t-shirt for women.",
-              "image": "/images/stock/t-shirt-female-1.jpg"
-            }
-          ]
-        }
+  return dispatch({
+    type: UPDATE_PROFILE,
+    user
+  })
 
-        return dispatch({
-          type: UPDATE_PROFILE,
-          user
-        })
-    }
+  // console.log('in updateUserProfile', updatedDetail)
+  //     return dispatch => {
+  //       console.log('in dispatch', updatedDetail)
+  //       const user = {
+  //         "name": "The User",
+  //         "role": "USER",
+  //         "email": updatedDetail,
+  //         // "address": null,
+  //         // "description": null,
+  //         // "image": null,
+  //         // "products": [
+  //         //   {
+  //         //     "name": "Belt for Women",
+  //         //     "description": "A very nice belt for women.",
+  //         //     "image": "/images/stock/belt-female.jpg"
+  //         //   },
+  //         //   {
+  //         //     "name": "T-Shirt for Women - Black",
+  //         //     "description": "A very nice black t-shirt for women.",
+  //         //     "image": "/images/stock/t-shirt-female-1.jpg"
+  //         //   }
+  //         // ]
+  //       }
+  //
+  //       return dispatch({
+  //         type: UPDATE_PROFILE,
+  //         user
+  //       })
+  //   }
     // })
   // }
 }
