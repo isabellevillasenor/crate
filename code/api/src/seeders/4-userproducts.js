@@ -6,12 +6,12 @@ const params = require('../config/params.json');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('userproducts', [
+    return queryInterface.bulkInsert('userProducts', [
       {
         userId: 2,
         productId: 1,
         kept: true,
-        deliveredDate: new Date(),
+        deliveryDate: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -19,7 +19,7 @@ module.exports = {
         userId: 2,
         productId: 2,
         kept: true,
-        deliveredDate: new Date(),
+        deliveryDate: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -27,7 +27,7 @@ module.exports = {
         userId: 2,
         productId: 3,
         kept: true,
-        deliveredDate: new Date(),
+        deliveryDate: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -35,7 +35,7 @@ module.exports = {
         userId: 3,
         productId: 1,
         kept: true,
-        deliveredDate: new Date(),
+        deliveryDate: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -43,7 +43,7 @@ module.exports = {
         userId: 3,
         productId: 2,
         kept: true,
-        deliveredDate: new Date(),
+        deliveryDate: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -51,7 +51,7 @@ module.exports = {
         userId: 3,
         productId: 3,
         kept: false,
-        deliveredDate: new Date(),
+        deliveryDate: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -59,7 +59,7 @@ module.exports = {
         userId: 4,
         productId: 3,
         kept: false,
-        deliveredDate: new Date(),
+        deliveryDate: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -67,7 +67,7 @@ module.exports = {
         userId: 4,
         productId: 4,
         kept: true,
-        deliveredDate: new Date(),
+        deliveryDate: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -75,7 +75,7 @@ module.exports = {
         userId: 5,
         productId: 1,
         kept: true,
-        deliveredDate: new Date(),
+        deliveryDate: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -83,7 +83,7 @@ module.exports = {
         userId: 5,
         productId: 2,
         kept: true,
-        deliveredDate: new Date(),
+        deliveryDate: new Date(),
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -91,6 +91,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('userproducts', null, {});
+    return queryInterface.bulkDelete('userProducts', null, {});
   }
   }

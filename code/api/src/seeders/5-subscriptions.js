@@ -6,7 +6,7 @@ const params = require('../config/params.json');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('subsriptions', [
+    return queryInterface.bulkInsert('subscriptions', [
       {
         userId: 2,
         crateId: 1,
@@ -81,6 +81,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('subsriptions', null, {});
+    return queryInterface.bulkDelete('subscriptions', null, {});
   }
   }

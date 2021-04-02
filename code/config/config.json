@@ -1,10 +1,9 @@
 {
   "development": {
-    "username": "rachelbuchta",
+    "username": "waffle",
     "password": null,
     "database": "crate",
     "host": "localhost",
     "dialect": "postgres"
   }
 }
- 
