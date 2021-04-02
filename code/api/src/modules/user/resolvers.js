@@ -8,7 +8,7 @@ import params from '../../config/params'
 import models from '../../setup/models'
 
 import { ProductType } from '../product/types'
-import { UserProductsType } from '../UserProducts/types'
+import { UserProductType } from '../UserProducts/types'
 
 // Create
 export async function create(parentValue, { name, email, password }) {
@@ -65,22 +65,15 @@ export async function login(parentValue, { email, password }) {
 export async function getById(parentValue, { id }) {
   return await models.User.findOne({
     where: { id } ,
-    include: [{
-      model: models.Product,
-      // through: models.UserProducts,
-      // attributes: ['id'],
-      // where: { userId: { id }}
-    }]
+    include: [
+      {model: models.Product,
+        through: "userProducts",
+        include: [ {model: models.UserProduct,
+        attributes: ["kept", "deliveryDate"]}]
+      },
+    ],
   })
-  // return await models.Products.through(UserProducts).where()
-  // return await models.UserProduct.findAll({
-  //   include: [{
-  //     model: Product,
-  //     through: UserProduct,
-  //     attributes: ['name', 'id'],
-  //     where: { productId: { id }}
-  //   }]
-  // })
+
 }
 
 // Get all
