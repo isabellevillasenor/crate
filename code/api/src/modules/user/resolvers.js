@@ -64,16 +64,11 @@ export async function login(parentValue, { email, password }) {
 // Get by ID
 export async function getById(parentValue, { id }) {
   return await models.User.findOne({
-    where: { id } ,
+    where: { id },
     include: [
       {model: models.Product,
-        through: "userProducts",
-        include: [ {model: models.UserProduct,
-        attributes: ["kept", "deliveryDate"]}]
-      },
-    ],
+        through: "userProducts"}]
   })
-
 }
 
 // Get all

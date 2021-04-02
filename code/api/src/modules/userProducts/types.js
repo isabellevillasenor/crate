@@ -10,11 +10,11 @@ const UserProductType = new GraphQLObjectType({
 
   fields: () => ({
     id: { type: GraphQLInt },
-    userId: { type: UserType },
-    productId: { type: ProductType },
-    delivered_date: { type: GraphQLString },
+    userId: { type: GraphQLInt },
+    productId: { type: GraphQLInt },
+    deliveryDate: { type: GraphQLString },
     kept: { type: GraphQLBoolean }
   })
 })
 
-export default UserProductType
+export { UserProductType }

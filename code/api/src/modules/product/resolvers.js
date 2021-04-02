@@ -21,8 +21,11 @@ export async function getBySlug(parentValue, { slug }) {
 
 // Get product by ID
 export async function getById(parentValue, { productId }) {
-  const product = await models.Product.findOne({ where: { id: productId } })
-
+  const product = await models.Product.findOne({
+    where: { id: productId },
+    include: [{model: models.UserProduct }],
+    attributes: ["kept", "deliveryDate"]
+  })
   if (!product) {
     // Product does not exists
     throw new Error('The product you are looking for does not exists or has been discontinued.')
