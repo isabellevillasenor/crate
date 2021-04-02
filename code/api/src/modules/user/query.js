@@ -4,7 +4,7 @@ import { GraphQLInt, GraphQLString, GraphQLList } from 'graphql'
 // App Imports
 import { UserType, UserLoginType, UserGenderType} from './types'
 import { getAll, getById, login, getGenders } from './resolvers'
-import { UserProductsType } from '../UserProducts/types'
+import { UserProductType } from '../UserProducts/types'
 
 // All
 export const users = {
