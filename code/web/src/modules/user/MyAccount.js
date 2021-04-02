@@ -20,7 +20,6 @@ class MyAccount extends PureComponent {
 
   constructor(props) {
     super(props)
-    //state needs to be updated to reflect store
     this.state = {
       // image: 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*',
       description: '',
@@ -30,36 +29,6 @@ class MyAccount extends PureComponent {
       emailEditMode: false,
       addressEditMode: false
     }
-  }
-
-  componentDidMount() {
-
-  //   let address = ''
-  //   let description = ''
-  //   // let image = 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*'
-  //   let userDetails;
-  //
-  //   if (this.props.user.details.address) {
-  //     address = this.props.user.details.address
-  //   }
-  //
-  //   if (this.props.user.details.description) {
-  //     description = this.props.user.details.description
-  //   }
-  //
-  //   // if (this.props.user.details.image) {
-  //   //   image = this.props.user.details.image
-  //   // }
-  //
-  //   userDetails = {
-  //     id: this.props.user.details.id,
-  //     // image: image,
-  //     email: this.props.user.details.email,
-  //     address: address,
-  //     description: description
-  //   }
-  //
-  //   this.setState({ userDetails })
   }
 
   handleChange = event => {
@@ -118,21 +87,14 @@ class MyAccount extends PureComponent {
   changeEmailEditMode = () => {
     event.preventDefault()
 
-    // if(this.state.emailEditMode) {
-    //   updateUserProfile(this.state.email, 'email')
-    // }
+    if(this.state.emailEditMode) {
+      console.log('check mark');
+      this.props.updateUserProfile(this.state.email, 'email')
+    }
 
     this.setState({
       emailEditMode: !this.state.emailEditMode
     })
-  }
-
-  updateUserEmail = (event) => {
-    event.preventDefault()
-
-    this.changeEmailEditMode()
-
-    updateUserProfile(this.state.email, 'email')
   }
 
   renderEmailEditView = () => {
@@ -148,7 +110,7 @@ class MyAccount extends PureComponent {
           type="submit"
           theme="secondary"
           style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={this.updateUserEmail}
+          onClick={() => this.changeEmailEditMode()}
         >
           ✔️
         </Button>
