@@ -33,14 +33,18 @@ class MyAccount extends PureComponent {
 
   handleChange = event => {
     event.preventDefault()
-
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
+  /* Description */
   changeDescriptionEditMode = () => {
     event.preventDefault()
+
+    if(this.state.emailEditMode) {
+      this.props.updateUserProfile(this.state.dedescription, 'description')
+    }
 
     this.setState({
       descriptionEditMode: !this.state.descriptionEditMode
@@ -60,7 +64,7 @@ class MyAccount extends PureComponent {
           type="submit"
           theme="secondary"
           style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={this.changeDescriptionEditMode} //add updateUserData(textareainput, 'description')
+          onClick={() => this.changeDescriptionEditMode()}
         >
           ✔️
         </Button>
@@ -84,11 +88,11 @@ class MyAccount extends PureComponent {
     )
   }
 
+  /* Email */
   changeEmailEditMode = () => {
     event.preventDefault()
 
     if(this.state.emailEditMode) {
-      console.log('check mark');
       this.props.updateUserProfile(this.state.email, 'email')
     }
 
@@ -134,8 +138,13 @@ class MyAccount extends PureComponent {
     )
   }
 
+  /* Address */
   changeAddressEditMode = () => {
     event.preventDefault()
+
+    if(this.state.emailEditMode) {
+      this.props.updateUserProfile(this.state.address, 'address')
+    }
 
     this.setState({
       addressEditMode: !this.state.addressEditMode
@@ -155,7 +164,7 @@ class MyAccount extends PureComponent {
           type="submit"
           theme="secondary"
           style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={this.changeAddressEditMode}
+          onClick={() => this.changeAddressEditMode()}
         >
           ✔️
         </Button>
