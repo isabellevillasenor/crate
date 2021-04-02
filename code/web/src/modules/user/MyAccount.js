@@ -21,14 +21,18 @@ class MyAccount extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      // image: 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*',
-      description: '',
+      image: this.props.user.details.image,
+      //'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*',
+      description: this.props.user.details.description,
       email: this.props.user.details.email,
-      address: '',
+      address: this.props.user.details.address,
+      name: this.props.user.details.name,
       descriptionEditMode: false,
       emailEditMode: false,
-      addressEditMode: false
+      addressEditMode: false,
+      nameEditMode: false
     }
+    console.log('PROPS', props)
   }
 
   handleChange = event => {
@@ -39,8 +43,13 @@ class MyAccount extends PureComponent {
     })
   }
 
-  changeDescriptionEditMode = () => {
+  changeDescriptionEditMode = event => {
     event.preventDefault()
+
+    if(this.state.descriptionEditMode) {
+      console.log('IN-EDIT-DESCRIPTION');
+      this.props.updateUserProfile(this.state.description, 'description')
+    }
 
     this.setState({
       descriptionEditMode: !this.state.descriptionEditMode
@@ -88,7 +97,7 @@ class MyAccount extends PureComponent {
     event.preventDefault()
 
     if(this.state.emailEditMode) {
-      console.log('check mark');
+      console.log('IN-EDIT-EMAIL');
       this.props.updateUserProfile(this.state.email, 'email')
     }
 
@@ -137,6 +146,11 @@ class MyAccount extends PureComponent {
   changeAddressEditMode = () => {
     event.preventDefault()
 
+    if(this.state.addressEditMode) {
+      console.log('IN-EDIT-ADDRESS');
+      this.props.updateUserProfile(this.state.address, 'address')
+    }
+
     this.setState({
       addressEditMode: !this.state.addressEditMode
     })
@@ -179,6 +193,57 @@ class MyAccount extends PureComponent {
     )
   }
 
+  editProperty = (field, check) => {
+    event.preventDefault()
+
+    if(this.state.addressEditMode) {
+      console.log('IN-EDIT', field);
+      this.props.updateUserProfile(this.state[field], field)
+    }
+
+    this.setState({
+      [check]: !this.state[check]
+    })
+  }
+
+  renderButtonEditView = (valueProperty, clickCallback) => {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Input
+          type='text'
+          name='address'
+          value={valueProperty}
+          onChange={this.handleChange}
+        />
+        <Button
+          type="submit"
+          theme="secondary"
+          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
+          onClick={clickCallback}
+        >
+          ✔️
+        </Button>
+      </div>
+    )
+  }
+
+  renderButtonDefaultView = (valueProperty, clickCallback) => {
+    return (
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <p style={{ color: black }}>{valueProperty}</p>
+        <Button
+          type="submit"
+          theme="secondary"
+          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
+          onClick={clickCallback}
+        >
+          <img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" />
+        </Button>
+      </div>
+    )
+  }
+
+
   render() {
     return(
       <>
@@ -187,7 +252,8 @@ class MyAccount extends PureComponent {
         <Grid>
           <GridCell style={{ padding: '2em', textAlign: 'center' }}>
             <H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
-
+            {this.state.nameEditMode ? this.renderButtonEditView(this.state.name, this.editProperty('name', this.nameEditMode)) : this.renderButtonDefaultView('name', this.editProperty('name', this.nameEditMode))}
+            
             <form style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
               <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', width: '40%', height: '60vh' }}>

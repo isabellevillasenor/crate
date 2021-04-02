@@ -148,13 +148,23 @@ export function updateUserProfile(updatedDetail, field) {
   const user = {
     "name": "The User",
     "role": "USER",
-    "email": updatedDetail,
+    "email": "user@test.com",
+    "image": 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*', 
+    "description": 'so rad', 
+    "address": '666 hell'
   }
 
+  console.log('inACTION', { 
+    ...user,
+    [field]: updatedDetail
+  } )
   return dispatch => {
     dispatch({
       type: UPDATE_PROFILE,
-      user
+      user: { 
+        ...user,
+        [field]: updatedDetail
+      }
     })
   }
 }

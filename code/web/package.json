@@ -33,6 +33,7 @@
     "webpack-cli": "3.3.12"
   },
   "dependencies": {
+    "@babel/helper-validator-option": "^7.12.17",
     "@babel/runtime": "7.11.2",
     "axios": "0.20.0",
     "body-parser": "^1.19.0",
@@ -49,10 +50,9 @@
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "styled-jsx": "3.3.0",
     "validator": "13.1.17"
   }
 }
-
-
