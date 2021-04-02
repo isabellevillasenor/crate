@@ -205,7 +205,7 @@ class MyAccount extends PureComponent {
                 />
 
                 {/* Personal Description */}
-                <p style={{ color: grey2 }}><strong>Personal Description:</strong></p>
+                <p className='description' style={{ color: grey2 }}><strong>Personal Description:</strong></p>
                 {this.state.descriptionEditMode ? this.renderDescriptionEditView() : this.renderDescriptionDefaultView()}
 
               </section>

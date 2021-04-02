@@ -12,26 +12,26 @@ describe('Crate User Account Page', () => {
       .get('.jsx-230203545 ').eq(1).find('a').eq(2).click()
   })
 
-  it.skip('Should be able to visit the users account page that includes a sub nav with three buttons and a main profile section with the users name at the top', () => {
+  it('Should be able to visit the users account page that includes a sub nav with three buttons and a main profile section with the users name at the top', () => {
       // cy
       //   .get('.jsx-230203545').eq(2).children('have.length', 3)
       cy
-        .get('h4').should('contain', 'The User')
+        .get('h4').should('contain', "User's Name")
   })
 
-  it.skip('Should have a profile image and option to upload a new profile image', () => {
+  it('Should have a profile image and option to upload a new profile image', () => {
       cy
         .get('form').find('img').should('have.attr', 'src', 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*')
-      cy
-        .get('form').find('input:first').should('have.attr', 'type', 'file').click()
+      // cy
+      //   .get('form').find('input:first').should('have.attr', 'type', 'file').click()
         //finish test to actually choose a file to upload and check src of new image
   })
 
-  it.skip('Should have a personal description and option to edit personal description', () => {
+  it('Should have a personal description and option to edit personal description', () => {
       cy
-        .get('form').find('.description').should('contain', 'Fashion lover!')
-      cy
-        .get('form').get('.jsx-2258186958:first ').click()
+        .get('form').find('.description').children('contain', 'Fashion lover!')
+      // cy
+      //   .get('form').get('.jsx-2258186958:first ').click()
         //finish test to test edit functionality of description and check the new description
   })
 
@@ -63,17 +63,16 @@ describe('Crate User Account Page', () => {
   // })
   // this will probably need to be moved into subscriptions now
 
-  it('Should be able to navigate to My Products page', () => {
+  it.skip('Should be able to navigate to My Products page', () => {
       cy
-        .get('.jsx-230203545').find('.jsx-1228826222:first ').should('contain', 'My Products').click()
-      // cy.url().should('include', '/user/my-products')
-      //finish url path
+        .get('.jsx-230203545').find('.jsx-1228826222 ').eq(1).should('contain', 'My Products').click()
+      cy.url().should('include', '/user/my-products')
   })
 
   it.skip('Should be able to navigate to Subscriptions Page', () => {
       cy
-        .get('.jsx-230203545 ').find('a:first').should('contain', 'Subscriptions').click()
-      // cy.url().should('include', '/user/subscriptions')
+        .get('.jsx-230203545 ').eq(1).find('a').eq(1).should('contain', 'Subscriptions').click()
+      cy.url().should('include', '/user/subscriptions')
       //finish url path
   })
 
