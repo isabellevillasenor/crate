@@ -13,33 +13,42 @@ import { grey2, black } from '../../ui/common/colors'
 
 //App Imports
 import SubNav from './SubNav'
-import { logout, updateUserProfile } from './api/actions'
+import { logout, updateUserProfile, getUserProfile } from './api/actions'
 import { APP_URL } from '../../setup/config/env'
 import { subscription } from 'gql-query-builder'
+import Axios from 'axios'
 
 class MyAccount extends PureComponent {
 
   constructor(props) {
     super(props)
     this.state = {
-      image: this.props.user.details.image,
-      //'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*',
-      description: this.props.user.details.description,
-      email: this.props.user.details.email,
-      address: this.props.user.details.address,
-      name: this.props.user.details.name,
+      user: {
+        name: this.props.user.details.name,
+        image: this.props.user.details.image,
+        description: this.props.user.details.description,
+        email: this.props.user.details.email,
+        address: this.props.user.details.address,
+      },
       descriptionEditMode: false,
       emailEditMode: false,
-      addressEditMode: false,
-      nameEditMode: false
+      addressEditMode: false
     }
     console.log('PROPS', props)
+  }
+
+  componentDidMount = () => {
+    this.props.getUserProfile('2').then(response => {
+      this.setState({
+        user: response.data.data.user
+      })
+    })
   }
 
   handleChange = event => {
     event.preventDefault()
     this.setState({
-      [event.target.name]: event.target.value
+      user: {[event.target.name]: event.target.value}
     })
   }
 
@@ -48,7 +57,7 @@ class MyAccount extends PureComponent {
 
     if(this.state.descriptionEditMode) {
       console.log('IN-EDIT-DESCRIPTION');
-      this.props.updateUserProfile(this.state.description, 'description')
+      this.props.updateUserProfile(this.state.user)
     }
 
     this.setState({
@@ -62,7 +71,7 @@ class MyAccount extends PureComponent {
         <Textarea
           type='textarea'
           name='description'
-          value={this.state.description}
+          value={this.state.user.description}
           onChange={this.handleChange}
         />
         <Button
@@ -80,7 +89,7 @@ class MyAccount extends PureComponent {
   renderDescriptionDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black, overflow: 'scroll' }}>{this.state.description}</p>
+        <p style={{ color: black, overflow: 'scroll' }}>{this.state.user.description}</p>
         <Button
           type="submit"
           theme="secondary"
@@ -99,7 +108,7 @@ class MyAccount extends PureComponent {
 
     if(this.state.emailEditMode) {
       console.log('IN-EDIT-EMAIL');
-      this.props.updateUserProfile(this.state.email, 'email')
+      this.props.updateUserProfile(this.state.user)
     }
 
     this.setState({
@@ -113,7 +122,7 @@ class MyAccount extends PureComponent {
         <Input
           type='text'
           name='email'
-          value={this.state.email}
+          value={this.state.user.email}
           onChange={this.handleChange}
         />
         <Button
@@ -131,7 +140,7 @@ class MyAccount extends PureComponent {
   renderEmailDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black }}>{this.state.email}</p>
+        <p style={{ color: black }}>{this.state.user.email}</p>
         <Button
           type="submit"
           theme="secondary"
@@ -147,10 +156,10 @@ class MyAccount extends PureComponent {
   /* Address */
   changeAddressEditMode = () => {
     event.preventDefault()
-
+    console.log('IN EDIT USER ADDRESS', this.state.user)
     if(this.state.addressEditMode) {
       console.log('IN-EDIT-ADDRESS');
-      this.props.updateUserProfile(this.state.address, 'address')
+      this.props.updateUserProfile(this.state.user)
     }
 
     this.setState({
@@ -164,7 +173,7 @@ class MyAccount extends PureComponent {
         <Input
           type='text'
           name='address'
-          value={this.state.address}
+          value={this.state.user.address}
           onChange={this.handleChange}
         />
         <Button
@@ -182,7 +191,7 @@ class MyAccount extends PureComponent {
   renderAddressDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black }}>{this.state.address}</p>
+        <p style={{ color: black }}>{this.state.user.address}</p>
         <Button
           type="submit"
           theme="secondary"
@@ -200,11 +209,11 @@ class MyAccount extends PureComponent {
 
     if(this.state.addressEditMode) {
       console.log('IN-EDIT', field);
-      this.props.updateUserProfile(this.state[field], field)
+      this.props.updateUserProfile(this.state.user)
     }
 
     this.setState({
-      [check]: !this.state[check]
+      [check]: !this.state.user[check]
     })
   }
 
@@ -223,7 +232,6 @@ class MyAccount extends PureComponent {
           style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
           onClick={clickCallback}
         >
-          ✔️
         </Button>
       </div>
     )
@@ -253,9 +261,8 @@ class MyAccount extends PureComponent {
 
         <Grid>
           <GridCell style={{ padding: '2em', textAlign: 'center' }}>
-            <H4 style={{ marginBottom: '0.5em' }}>{this.props.user.details.name}</H4>
-            {this.state.nameEditMode ? this.renderButtonEditView(this.state.name, this.editProperty('name', this.nameEditMode)) : this.renderButtonDefaultView('name', this.editProperty('name', this.nameEditMode))}
-            
+            <H4 style={{ marginBottom: '0.5em' }}>{this.state.user.name}</H4>
+        
             <form style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
               <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', width: '40%', height: '60vh' }}>
@@ -272,7 +279,7 @@ class MyAccount extends PureComponent {
                   type='file'
                   name='image'
                   text='Upload Image'
-                  value={this.state.image}
+                  value={this.state.user.image}
                   onChange={this.handleChange}
                 />
 
@@ -317,4 +324,4 @@ function profileState(state) {
   }
 }
 
-export default connect(profileState, { logout, updateUserProfile })(MyAccount)
+export default connect(profileState, { logout, updateUserProfile, getUserProfile })(MyAccount)

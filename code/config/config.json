@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "waffle",
+    "username": "alice",
     "password": null,
     "database": "crate",
     "host": "localhost",
