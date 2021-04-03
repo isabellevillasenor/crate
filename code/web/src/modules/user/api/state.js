@@ -8,12 +8,12 @@ export const userInitialState = {
   isLoading: false,
   isAuthenticated: false,
   details: {
-    "name": "The User",
-    "role": "USER",
-    "email": "user@test.com",
-    "image": 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*', 
-    "description": 'so rad', 
-    "address": '666 hell'
+    "name": "",
+    "role": "",
+    "email": "",
+    "image": "",
+    "description": "",
+    "address": ""
   }
 }
 
@@ -21,9 +21,13 @@ export const userInitialState = {
 export default (state = userInitialState, action) => {
   switch (action.type) {
     case SET_USER:
-      console.log('inSTATE', { 
+    let detailsup = userInitialState.details.keys
+
+
+      console.log('SET USER inSTATE', { 
         ...state, 
         details:{...action.user}})
+
       return {
         ...state,
         isAuthenticated: !isEmpty(action.user),
