@@ -123,8 +123,9 @@ export function getGenders() {
 //Mutate profile data (email, address, description)
 export function updateUserProfile(updatedUser) {
   console.log('updatedUser', updatedUser)
+  //inside of updatedUser, there's now an id that can be interpolated & sent to the server
   return dispatch => {
-    return axios.post(routeApi, 
+    return axios.post(routeApi,
       mutation({
         operation: 'userUpdate',
         variables: updatedUser,
@@ -137,7 +138,7 @@ export function updateUserProfile(updatedUser) {
     return dispatch => {
       dispatch({
         type: UPDATE_PROFILE,
-        user: { 
+        user: {
           userStuff
         }
       })
@@ -148,17 +149,17 @@ export function updateUserProfile(updatedUser) {
 export function getUserProfile(id) {
   console.log('route', routeApi)
   return dispatch => {
-    return axios.post(routeApi, 
+    return axios.post(routeApi,
       query({
         operation: 'user',
         variable: {id: 1},
-        fields: [ 
+        fields: [
             'name',
             'role',
             'email',
             'address',
             'description',
-            'image', 
+            'image',
             'products'
         ]
       })).then(response => {
@@ -168,7 +169,7 @@ export function getUserProfile(id) {
     return dispatch => {
       dispatch({
         type: UPDATE_PROFILE,
-        user: { 
+        user: {
           userStuff
         }
       })

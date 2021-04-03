@@ -25,6 +25,7 @@ class MyAccount extends PureComponent {
     this.state = {
       user: {
         name: this.props.user.details.name,
+        id: this.props.user.details.id,
         image: this.props.user.details.image,
         description: this.props.user.details.description,
         email: this.props.user.details.email,
@@ -38,7 +39,9 @@ class MyAccount extends PureComponent {
   }
 
   componentDidMount = () => {
-    this.props.getUserProfile('2').then(response => {
+    //What is this '2' representing?
+    //To my best understanding, the id of the user exists both in the original call & it exists in localStorage
+    this.props.getUserProfile(this.props.user.details.id).then(response => {
       this.setState({
         user: response.data.data.user
       })
@@ -262,7 +265,7 @@ class MyAccount extends PureComponent {
         <Grid>
           <GridCell style={{ padding: '2em', textAlign: 'center' }}>
             <H4 style={{ marginBottom: '0.5em' }}>{this.state.user.name}</H4>
-        
+
             <form style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
 
               <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', width: '40%', height: '60vh' }}>
