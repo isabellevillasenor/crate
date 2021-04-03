@@ -44,7 +44,7 @@ class MyAccount extends PureComponent {
     event.preventDefault()
 
     if(this.state.emailEditMode) {
-      this.props.updateUserProfile(this.state.dedescription, 'description')
+      this.props.updateUserProfile(this.state.description, 'description')
     }
 
     this.setState({
