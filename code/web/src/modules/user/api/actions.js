@@ -34,11 +34,10 @@ export function login(userCredentials, isLoading = true) {
       type: LOGIN_REQUEST,
       isLoading
     })
-
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role}', 'token']
+      fields: ['user {name, email, role, id}', 'token']
     }))
       .then(response => {
         let error = ''
@@ -121,93 +120,101 @@ export function getGenders() {
 }
 
 
-//These are for the 'my-account' page
-//Get user data
-// export function getUserData(ID) {
-//   return axios.post(routeApi, query({
-//     user(id: $id) {
-//       name
-//       email
-//       address
-//       description
-//       image
-//     }
-//   }))
-// }
-
 //Mutate profile data (email, address, description)
-export function updateUserProfile(updatedDetail, field) {
-  // return dispatch =>
-  //   return axios.post(routeApi, mutation({
-  //     operation: 'userUpdate',
-  //     variables: updatedDetail,
-  //     fields: [field]
-  //   })).then(response => {
-  //
-
-  const user = {
-    "name": "The User",
-    "role": "USER",
-    "email": "user@test.com",
-    "image": 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*', 
-    "description": 'so rad', 
-    "address": '666 hell'
-  }
-
-  console.log('inACTION', { 
-    ...user,
-    [field]: updatedDetail
-  } )
+export function updateUserProfile(updatedUser) {
+  console.log('updatedUser', updatedUser)
   return dispatch => {
-    dispatch({
-      type: UPDATE_PROFILE,
-      user: { 
-        ...user,
-        [field]: updatedDetail
-      }
-    })
-  }
-}
+    return axios.post(routeApi, 
+      mutation({
+        operation: 'userUpdate',
+        variables: updatedUser,
+        fields: ['name', 'role', 'email', 'image', 'description', 'address']
+      })
+    ).then(response => {
+    console.log('IN ACTION RESPONSE', response)
+
+    const userStuff = response.user
+    return dispatch => {
+      dispatch({
+        type: UPDATE_PROFILE,
+        user: { 
+          userStuff
+        }
+      })
+    }
+  })
+}}
+
+export function getUserProfile(id) {
+  console.log('route', routeApi)
+  return dispatch => {
+    return axios.post(routeApi, 
+      query({
+        operation: 'user',
+        variable: {id: 1},
+        fields: [ 
+            'name',
+            'role',
+            'email',
+            'address',
+            'description',
+            'image', 
+            'products'
+        ]
+      })).then(response => {
+    console.log('IN ACTION RESPONSE', response)
+
+    const userStuff = response.user
+    return dispatch => {
+      dispatch({
+        type: UPDATE_PROFILE,
+        user: { 
+          userStuff
+        }
+      })
+    }
+  })
+}}
 
 //This is for the 'my-products' page
 //get delivery history (all products)
 //specifies that for each product in that list of 'productids', we want a subset of the product information
 // image, name, description, delivered date, kept
-export function getUserProduct(userID) {
-  let queryObject = query({
-    operation: 'getUserProduct',
-    variables: userID,
-    fields: ['image', 'name', 'description', 'deliveredDate', 'kept']
-  })
-  return dispatch => {
-    return axios.post(routeApi, queryObject).then(response => {
-      return dispatch({
-        type: GET_PRODUCTS,
-        user,
-      })
-    })
-  }
-}
+// export function getUserProduct(userID) {
+//   let queryObject = query({
+//     operation: 'getUserProduct',
+//     variables: userID,
+//     fields: ['image', 'name', 'description', 'deliveredDate', 'kept']
+//   })
+//   return dispatch => {
+//     return axios.post(routeApi, queryObject).then(response => {
+//       return dispatch({
+//         type: GET_PRODUCTS,
+//         user,
+//       })
+//     })
+//   }
+// }
 
 //Mutate profile delivery dates
 //this needs to be mapped over all the users' subscriptions and called for every subscription
-export function updateUserProductsDeliveryDate(listOfUserProducts, updatedDate) {
-  listOfUserProducts.forEach(product => {
-    return dispatch => {
-      return axios.post(routeApi, mutation({
-        operation: 'subscriptionUpdate',
-        variables: updatedDate,
-        fields: [product.deliveryDate]
-      })).then(response => {
-        if (!response.status === 200) {
-          throw new Error('Whoops, something went wrong')
-        }
-        const product = response.data.product
-        return dispatch({
-          type: UPDATE_PRODUCTS,
-          user,
-        })
-      })
-    }
-  })
-}
+// export function updateUserProductsDeliveryDate(listOfUserProducts, updatedDate) {
+//   listOfUserProducts.forEach(product => {
+//     return dispatch => {
+//       return axios.post(routeApi, mutation({
+//         operation: 'subscriptionUpdate',
+//         variables: updatedDate,
+//         fields: [product.deliveryDate]
+//       })).then(response => {
+//         if (!response.status === 200) {
+//           throw new Error('Whoops, something went wrong')
+//         }
+//         const product = response.data.product
+//         return dispatch({
+//           type: UPDATE_PRODUCTS,
+//           user,
+//         })
+//       })
+//     }
+//   })
+// }
