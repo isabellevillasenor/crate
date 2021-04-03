@@ -15,6 +15,7 @@ import { grey2, black } from '../../ui/common/colors'
 import SubNav from './SubNav'
 import { logout, updateUserProfile } from './api/actions'
 import { APP_URL } from '../../setup/config/env'
+import { subscription } from 'gql-query-builder'
 
 class MyAccount extends PureComponent {
 
@@ -37,7 +38,6 @@ class MyAccount extends PureComponent {
 
   handleChange = event => {
     event.preventDefault()
-
     this.setState({
       [event.target.name]: event.target.value
     })
@@ -69,7 +69,7 @@ class MyAccount extends PureComponent {
           type="submit"
           theme="secondary"
           style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={this.changeDescriptionEditMode} //add updateUserData(textareainput, 'description')
+          onClick={() => this.changeDescriptionEditMode()}
         >
           ✔️
         </Button>
@@ -93,6 +93,7 @@ class MyAccount extends PureComponent {
     )
   }
 
+  /* Email */
   changeEmailEditMode = () => {
     event.preventDefault()
 
@@ -143,6 +144,7 @@ class MyAccount extends PureComponent {
     )
   }
 
+  /* Address */
   changeAddressEditMode = () => {
     event.preventDefault()
 
@@ -169,7 +171,7 @@ class MyAccount extends PureComponent {
           type="submit"
           theme="secondary"
           style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={this.changeAddressEditMode}
+          onClick={() => this.changeAddressEditMode()}
         >
           ✔️
         </Button>
@@ -293,32 +295,7 @@ class MyAccount extends PureComponent {
                   <p style={{ color: grey2, marginBottom: '1.5em' }}>Address:</p>
                   {this.state.addressEditMode ? this.renderAddressEditView() : this.renderAddressDefaultView()}
                 </div>
-
-                {/* Delivery Date */}
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <p style={{ color: grey2, marginBottom: '1.5em' }}>Current delivery date: Monday</p>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <Select name='deliveryDate'>
-                      <option value='Monday'>Monday</option>
-                      <option value='Tuesday'>Tuesday</option>
-                      <option value='Wednesday'>Wednesday</option>
-                      <option value='Thursday'>Thursday</option>
-                      <option value='Friday'>Friday</option>
-                      <option value='Saturday'>Saturday</option>
-                      <option value='Sunday'>Sunday</option>
-                    </Select>
-                    <Button
-                      type="submit"
-                      theme="secondary"
-                      style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em', color: black }}
-                    >
-                      Submit
-                    </Button>
-                  </div>
-                </div>
-
               </section>
-
             </form>
           </GridCell>
         </Grid>

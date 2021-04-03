@@ -7,7 +7,10 @@ import { Helmet } from 'react-helmet'
 // UI Imports
 import { Grid, GridCell } from '../../ui/grid'
 import { H3 } from '../../ui/typography'
-import { grey, grey2 } from '../../ui/common/colors'
+import { Input, Select } from '../../ui/input'
+import Icon from '../../ui/icon'
+import Button from '../../ui/button'
+import { grey, grey2, black } from '../../ui/common/colors'
 
 // App Imports
 import { getListByUser } from '../subscription/api/actions'
@@ -55,11 +58,33 @@ class Subscriptions extends PureComponent {
                 ? <Loading/>
                 : this.props.subscriptions.list.length > 0
                     ? this.props.subscriptions.list.map(subscription => (
-                        <div key={subscription.id} style={{ margin: '2em', float: 'left' }}>
+                      <>
+                        <div key={subscription.id} id={subscription.id} style={{ margin: '2em', float: 'left' }}>
                           <SubscriptionItem subscription={subscription} />
+                          <div className='subscription-update' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <p style={{ color: grey2, marginBottom: '1.5em', marginTop: '1.5em' }}>Current delivery date: {subscription.deliveryDate}</p>
+                            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                              <Select name='deliveryDate'>
+                                <option value='Monday'>Monday</option>
+                                <option value='Tuesday'>Tuesday</option>
+                                <option value='Wednesday'>Wednesday</option>
+                                <option value='Thursday'>Thursday</option>
+                                <option value='Friday'>Friday</option>
+                                <option value='Saturday'>Saturday</option>
+                                <option value='Sunday'>Sunday</option>
+                              </Select>
+                              <Button
+                                type="submit"
+                                theme="secondary"
+                                style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
+                              >
+                                Submit
+                              </Button>
+                            </div>
+                          </div>
                         </div>
-                      ))
-                    : <EmptyMessage message="You are not subscribed to any crates yet." />
+                      </>))
+                      : <EmptyMessage message="You are not subscribed to any crates yet." />
             }
           </GridCell>
         </Grid>

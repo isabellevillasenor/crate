@@ -7,6 +7,9 @@ import serverConfig from '../../config/server'
 import params from '../../config/params'
 import models from '../../setup/models'
 
+import { ProductType } from '../product/types'
+import { UserProductType } from '../UserProducts/types'
+
 // Create
 export async function create(parentValue, { name, email, password }) {
   // Users exists with same email check
@@ -60,7 +63,12 @@ export async function login(parentValue, { email, password }) {
 
 // Get by ID
 export async function getById(parentValue, { id }) {
-  return await models.User.findOne({ where: { id } })
+  return await models.User.findOne({
+    where: { id },
+    include: [
+      {model: models.Product,
+        through: "userProducts"}]
+  })
 }
 
 // Get all
@@ -76,4 +84,23 @@ export async function remove(parentValue, { id }) {
 // User genders
 export async function getGenders() {
   return Object.values(params.user.gender)
+}
+
+// Update user
+export async function update(parentValue, { id, name, email, image, description, address}, { auth }) {
+  if(auth.user) {
+    return await models.User.update(
+      {
+        name,
+        email,
+        image,
+        description,
+        address
+      },
+      { where: { id } }
+    )
+  }
+  else {
+    throw new Error('Operation denied.')
+  }
 }

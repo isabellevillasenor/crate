@@ -3,13 +3,13 @@
 
 module.exports = function(sequelize, DataTypes) {
   let UserProduct = sequelize.define('userProducts', {
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER
     },
-    product_id: {
+    productId: {
       type: DataTypes.INTEGER
     },
-    delivered_date: {
+    deliveryDate: {
       type: DataTypes.DATE
     },
     kept: {
