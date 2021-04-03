@@ -41,11 +41,12 @@ class MyAccount extends PureComponent {
   componentDidMount = () => {
     //What is this '2' representing?
     //To my best understanding, the id of the user exists both in the original call & it exists in localStorage
-    this.props.getUserProfile(this.props.user.details.id).then(response => {
-      this.setState({
-        user: response.data.data.user
-      })
-    })
+    // this.props.getUserProfile(this.state.user.id).then(response => {
+    //   console.log('get user profile');
+    //   this.setState({
+    //     user: response.data.data.user
+    //   })
+    // })
   }
 
   handleChange = event => {

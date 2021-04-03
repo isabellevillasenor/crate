@@ -24,14 +24,14 @@ export default (state = userInitialState, action) => {
     let detailsup = userInitialState.details.keys
 
 
-      console.log('SET USER inSTATE', { 
-        ...state, 
+      console.log('SET USER inSTATE', {
+        ...state,
         details:{...action.user}})
 
       return {
         ...state,
         isAuthenticated: !isEmpty(action.user),
-        details: {...action.user, hi: 'hi'},
+        details: action.user
       }
 
     case LOGIN_REQUEST:
@@ -58,8 +58,8 @@ export default (state = userInitialState, action) => {
       }
 
     case UPDATE_PROFILE:
-      console.log('inSTATEup', { 
-        ...state, 
+      console.log('inSTATEup', {
+        ...state,
         details:{...action.user}})
       return {
         ...state,
