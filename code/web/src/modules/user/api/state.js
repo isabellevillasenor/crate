@@ -24,7 +24,11 @@ export default (state = userInitialState, action) => {
       return {
         ...state,
         isAuthenticated: !isEmpty(action.user),
+<<<<<<< Updated upstream
         details: action.user
+=======
+        details: {...action.user},
+>>>>>>> Stashed changes
       }
 
     case LOGIN_REQUEST:

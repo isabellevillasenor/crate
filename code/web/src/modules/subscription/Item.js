@@ -25,9 +25,9 @@ class Item extends PureComponent {
 
     this.state = {
       isLoading: false, 
-      delivery_date: ''
+      delivery_date: Date.now()
     }
-    console.log('ITEM PROPS', props)
+    console.log(props)
   }
 
   onClickUnsubscribe = (id) => {
@@ -69,24 +69,44 @@ class Item extends PureComponent {
     event.preventDefault()
     event.persist()
     this.setState({
-      [event.target.name]: event.target.value
+      delivery_date: event.target.value
     })
   }
 
   handleSubmit() {
-    this.props.updateSubscriptionDate(this.props.id, this.state.delivery_date).then(response => {
+    updateSubscriptionDate(this.props.id, this.state.delivery_date).then(response => {
       if (response.status === 200) {
         alert(`Successfully updated delivery to ${this.state.delivery_date}! Date will be updated on next login.`)
       }
     })
   }
 
+  convertDate(unixDate) {
+    const valueDate = []
+    let date = new Date(parseInt(unixDate))
+    console.log('DATE', date)
+    valueDate.push(date.getFullYear())
+    valueDate.push(("0" + (date.getMonth() + 1)).slice(-2))
+    valueDate.push(("0" + date.getDate()).slice(-2))
+    valueDate.join('-')
+    console.log('VALUEDATE', valueDate)
+    if (unixDate) {
+      //const date = new Date(unixDate).toLocaleDateString("en-US")
+      // const year = date.getUTCFullYear();
+      // const month = date.getUTCMonth() + 1;
+      // const day = date.getUTCDate();
+      // const dateString = year + "-" + month + "-" + day;
+      // console.log('STRING', dateString)
+      // return dateString
+    }
+    return '2021-05-20'
+  }
   render() {
     const { id, crate, createdAt, delivery_date} = this.props.subscription
     const { isLoading } = this.state
 
     return (
-      <Card style={{ width: '18em', backgroundColor: white }}>
+      <Card style={{ width: '18em', backgroundColor: white }} key={id}>
         <p style={{ padding: '2em 3em 0 3em' }}>
           <img src={`${ APP_URL }/images/crate.png`} alt={ crate.name } style={{ width: '100%' }}/>
         </p>
@@ -115,9 +135,9 @@ class Item extends PureComponent {
           <p style={{ color: grey2, marginBottom: '0.5rem', marginTop: '1rem' }}>Current delivery date</p>
           <div style={{ display: 'flex', flexDirection: 'column', justify: 'center', alignItems: 'center', textAlign: 'center' }}>
             <Input 
-              type='text'
+              type='date'
               name='delivery_date'
-              value={ new Date(parseInt(delivery_date)).toDateString() }
+              value={ this.convertDate(delivery_date) }
               onChange={this.handleChange}
               style={{ textAlign: 'center' }}
             />
