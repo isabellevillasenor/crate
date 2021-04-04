@@ -24,7 +24,8 @@ class Item extends PureComponent {
     super(props)
 
     this.state = {
-      isLoading: false
+      isLoading: false, 
+      delivery_date: ''
     }
     console.log('ITEM PROPS', props)
   }
@@ -64,13 +65,24 @@ class Item extends PureComponent {
     }
   }
 
+  handleChange(event) {
+    event.preventDefault()
+    event.persist()
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
   handleSubmit() {
-    //need to figure out how to grab date from select
-    this.props.updateSubscriptionDate(this.props.id, 'date')
+    this.props.updateSubscriptionDate(this.props.id, this.state.delivery_date).then(response => {
+      if (response.status === 200) {
+        alert(`Successfully updated delivery to ${this.state.delivery_date}! Date will be updated on next login.`)
+      }
+    })
   }
 
   render() {
-    const { id, crate, createdAt, deliveryDate } = this.props.subscription
+    const { id, crate, createdAt, delivery_date} = this.props.subscription
     const { isLoading } = this.state
 
     return (
@@ -100,22 +112,20 @@ class Item extends PureComponent {
           </p>
         </div>
         <div className='subscription-update' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingBottom: '2rem' }}>
-          <p style={{ color: grey2, marginBottom: '0.5rem', marginTop: '1.5rem' }}>Current delivery date</p>
-          <div style={{ display: 'flex', justify: 'center', alignItems: 'center' }}>
-            <Select name='deliveryDate' select='Tuesday'>
-              <option value='Monday'>Monday</option>
-              <option value='Tuesday'>Tuesday</option>
-              <option value='Wednesday'>Wednesday</option>
-              <option value='Thursday'>Thursday</option>
-              <option value='Friday'>Friday</option>
-              <option value='Saturday'>Saturday</option>
-              <option value='Sunday'>Sunday</option>
-            </Select>
+          <p style={{ color: grey2, marginBottom: '0.5rem', marginTop: '1rem' }}>Current delivery date</p>
+          <div style={{ display: 'flex', flexDirection: 'column', justify: 'center', alignItems: 'center', textAlign: 'center' }}>
+            <Input 
+              type='text'
+              name='delivery_date'
+              value={ new Date(parseInt(delivery_date)).toDateString() }
+              onChange={this.handleChange}
+              style={{ textAlign: 'center' }}
+            />
             <Button
               type="submit"
               onClick={this.handleSubmit}
               theme="secondary"
-              style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
+              style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginTop: '0.5em' }}
             >
               Update
             </Button>
