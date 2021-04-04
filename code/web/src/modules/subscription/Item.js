@@ -82,25 +82,18 @@ class Item extends PureComponent {
   }
 
   convertDate(unixDate) {
+    if (unixDate) {
     const valueDate = []
     let date = new Date(parseInt(unixDate))
-    console.log('DATE', date)
     valueDate.push(date.getFullYear())
     valueDate.push(("0" + (date.getMonth() + 1)).slice(-2))
     valueDate.push(("0" + date.getDate()).slice(-2))
-    valueDate.join('-')
-    console.log('VALUEDATE', valueDate)
-    if (unixDate) {
-      //const date = new Date(unixDate).toLocaleDateString("en-US")
-      // const year = date.getUTCFullYear();
-      // const month = date.getUTCMonth() + 1;
-      // const day = date.getUTCDate();
-      // const dateString = year + "-" + month + "-" + day;
-      // console.log('STRING', dateString)
-      // return dateString
+    const dateString = valueDate.join('-')
+    return dateString
     }
     return '2021-05-20'
   }
+  
   render() {
     const { id, crate, createdAt, delivery_date} = this.props.subscription
     const { isLoading } = this.state

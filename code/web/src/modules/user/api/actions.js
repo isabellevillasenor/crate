@@ -120,48 +120,8 @@ export function getGenders() {
 }
 
 
-<<<<<<< Updated upstream
 //Mutate profile data 
 export function updateUserProfile(updatedUser) {
-=======
-//These are for the 'my-account' page
-//Get user data
-// export function getUserData(ID) {
-//   return axios.post(routeApi, query({
-//     user(id: $id) {
-//       name
-//       email
-//       address
-//       description
-//       image
-//     }
-//   }))
-// }
-
-//Mutate profile data (email, address, description)
-export function updateUserProfile(updatedDetail, field, user) {
-  // return dispatch =>
-  //   return axios.post(routeApi, mutation({
-  //     operation: 'userUpdate',
-  //     variables: updatedDetail,
-  //     fields: [field]
-  //   })).then(response => {
-  //
-
-  // const user = {
-  //   "name": "The User",
-  //   "role": "USER",
-  //   "email": "user@test.com",
-  //   "image": 'https://hips.hearstapps.com/countryliving.cdnds.net/17/47/2048x1365/gallery-1511194376-cavachon-puppy-christmas.jpg?resize=768:*', 
-  //   "description": 'so rad', 
-  //   "address": '666 hell'
-  // }
-  console.log('ACTION USER OBJECT THING', user)
-  console.log('inACTION', { 
-    ...user,
-    [field]: updatedDetail,
-  } )
->>>>>>> Stashed changes
   return dispatch => {
     return axios.post(routeApi,
       mutation({
