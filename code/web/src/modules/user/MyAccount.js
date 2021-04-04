@@ -26,198 +26,36 @@ class MyAccount extends PureComponent {
       user: {
         name: this.props.user.details.name,
         id: this.props.user.details.id,
-        image: this.props.user.details.image,
-        description: this.props.user.details.description,
+        image: this.props.user.details.image ||'',
+        description: this.props.user.details.description ||'',
         email: this.props.user.details.email,
-        address: this.props.user.details.address,
+        address: this.props.user.details.address ||'',
       },
       descriptionEditMode: false,
       emailEditMode: false,
       addressEditMode: false
     }
-    console.log('PROPS', props)
-  }
-
-  componentDidMount = () => {
-    //What is this '2' representing?
-    //To my best understanding, the id of the user exists both in the original call & it exists in localStorage
-    // this.props.getUserProfile(this.state.user.id).then(response => {
-    //   console.log('get user profile');
-    //   this.setState({
-    //     user: response.data.data.user
-    //   })
-    // })
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = event => {
     event.preventDefault()
-    this.setState({
-      user: {[event.target.name]: event.target.value}
-    })
+    event.persist()
+    this.setState(prevState => ({
+      user: {
+        ...prevState.user,
+        [event.target.name]: event.target.value
+      }
+    }))
   }
 
-  changeDescriptionEditMode = event => {
-    event.preventDefault()
-
-    if(this.state.descriptionEditMode) {
-      console.log('IN-EDIT-DESCRIPTION');
+  editProperty = (check) => {
+    if(this.state[check]) {
       this.props.updateUserProfile(this.state.user)
     }
 
     this.setState({
-      descriptionEditMode: !this.state.descriptionEditMode
-    })
-  }
-
-  renderDescriptionEditView = () => {
-    return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Textarea
-          type='textarea'
-          name='description'
-          value={this.state.user.description}
-          onChange={this.handleChange}
-        />
-        <Button
-          type="submit"
-          theme="secondary"
-          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={() => this.changeDescriptionEditMode()}
-        >
-          ✔️
-        </Button>
-      </div>
-    )
-  }
-
-  renderDescriptionDefaultView = () => {
-    return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black, overflow: 'scroll' }}>{this.state.user.description}</p>
-        <Button
-          type="submit"
-          theme="secondary"
-          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={this.changeDescriptionEditMode}
-        >
-          <img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" />
-        </Button>
-      </div>
-    )
-  }
-
-  /* Email */
-  changeEmailEditMode = () => {
-    event.preventDefault()
-
-    if(this.state.emailEditMode) {
-      console.log('IN-EDIT-EMAIL');
-      this.props.updateUserProfile(this.state.user)
-    }
-
-    this.setState({
-      emailEditMode: !this.state.emailEditMode
-    })
-  }
-
-  renderEmailEditView = () => {
-    return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Input
-          type='text'
-          name='email'
-          value={this.state.user.email}
-          onChange={this.handleChange}
-        />
-        <Button
-          type="submit"
-          theme="secondary"
-          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={() => this.changeEmailEditMode()}
-        >
-          ✔️
-        </Button>
-      </div>
-    )
-  }
-
-  renderEmailDefaultView = () => {
-    return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black }}>{this.state.user.email}</p>
-        <Button
-          type="submit"
-          theme="secondary"
-          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={this.changeEmailEditMode}
-        >
-          <img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" />
-        </Button>
-      </div>
-    )
-  }
-
-  /* Address */
-  changeAddressEditMode = () => {
-    event.preventDefault()
-    console.log('IN EDIT USER ADDRESS', this.state.user)
-    if(this.state.addressEditMode) {
-      console.log('IN-EDIT-ADDRESS');
-      this.props.updateUserProfile(this.state.user)
-    }
-
-    this.setState({
-      addressEditMode: !this.state.addressEditMode
-    })
-  }
-
-  renderAddressEditView = () => {
-    return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Input
-          type='text'
-          name='address'
-          value={this.state.user.address}
-          onChange={this.handleChange}
-        />
-        <Button
-          type="submit"
-          theme="secondary"
-          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={() => this.changeAddressEditMode()}
-        >
-          ✔️
-        </Button>
-      </div>
-    )
-  }
-
-  renderAddressDefaultView = () => {
-    return (
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black }}>{this.state.user.address}</p>
-        <Button
-          type="submit"
-          theme="secondary"
-          style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
-          onClick={this.changeAddressEditMode}
-        >
-          <img src={`${ APP_URL }/images/icons8-edit-24.png`} alt="Edit" />
-        </Button>
-      </div>
-    )
-  }
-
-  editProperty = (field, check) => {
-    event.preventDefault()
-
-    if(this.state.addressEditMode) {
-      console.log('IN-EDIT', field);
-      this.props.updateUserProfile(this.state.user)
-    }
-
-    this.setState({
-      [check]: !this.state.user[check]
+      [check]: !this.state[check]
     })
   }
 
@@ -236,6 +74,7 @@ class MyAccount extends PureComponent {
           style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
           onClick={clickCallback}
         >
+          ✔️
         </Button>
       </div>
     )
@@ -289,7 +128,7 @@ class MyAccount extends PureComponent {
 
                 {/* Personal Description */}
                 <p style={{ color: grey2 }}><strong>Personal Description:</strong></p>
-                {this.state.descriptionEditMode ? this.renderDescriptionEditView() : this.renderDescriptionDefaultView()}
+                {this.state.descriptionEditMode ? this.renderButtonEditView(this.state.user.description, () => this.editProperty('descriptionEditMode')) : this.renderButtonDefaultView(this.state.user.description, () => this.editProperty('descriptionEditMode'))}
 
               </section>
 
@@ -298,13 +137,13 @@ class MyAccount extends PureComponent {
                 {/* Email */}
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <p style={{ color: grey2, marginBottom: '1.5em' }}>Email:</p>
-                  {this.state.emailEditMode ? this.renderEmailEditView() : this.renderEmailDefaultView()}
+                  {this.state.emailEditMode ? this.renderButtonEditView(this.state.user.email, () => this.editProperty('emailEditMode')) : this.renderButtonDefaultView(this.state.user.email, () => this.editProperty('emailEditMode'))}
                 </div>
 
                 {/* Mailing Address */}
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <p style={{ color: grey2, marginBottom: '1.5em' }}>Address:</p>
-                  {this.state.addressEditMode ? this.renderAddressEditView() : this.renderAddressDefaultView()}
+                  {this.state.addressEditMode ? this.renderButtonEditView(this.state.user.address, () => this.editProperty('addressEditMode')) : this.renderButtonDefaultView(this.state.user.address, () => this.editProperty('addressEditMode'))}
                 </div>
               </section>
             </form>
