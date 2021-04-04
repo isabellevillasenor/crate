@@ -36,6 +36,7 @@ class MyAccount extends PureComponent {
       addressEditMode: false
     }
     this.handleChange = this.handleChange.bind(this);
+    console.log(props)
   }
 
   handleChange = event => {
@@ -173,4 +174,4 @@ function profileState(state) {
   }
 }
 
-export default connect(profileState, { logout, updateUserProfile, getUserProfile })(MyAccount)
+export default connect(profileState, { logout, updateUserProfile })(MyAccount)

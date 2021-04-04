@@ -122,8 +122,6 @@ export function getGenders() {
 
 //Mutate profile data 
 export function updateUserProfile(updatedUser) {
-  console.log('updatedUser', updatedUser)
-  //inside of updatedUser, there's now an id that can be interpolated & sent to the server
   return dispatch => {
     return axios.post(routeApi,
       mutation({
@@ -132,18 +130,15 @@ export function updateUserProfile(updatedUser) {
         fields: ['id', 'email', 'image', 'description', 'address']
       })
     ).then(response => {
-    console.log('IN ACTION RESPONSE', response)
+      window.localStorage.removeItem('user')
+      window.localStorage.setItem('user', JSON.stringify(updatedUser))
 
-    const userStuff = response.user
-    return dispatch => {
       dispatch({
         type: UPDATE_PROFILE,
-        user: {
-          userStuff
-        }
+        user: updatedUser
       })
-    }
-  })
+  
+    })
 }}
 
 //This is for the 'my-products' page

@@ -21,13 +21,6 @@ export const userInitialState = {
 export default (state = userInitialState, action) => {
   switch (action.type) {
     case SET_USER:
-    let detailsup = userInitialState.details.keys
-
-
-      console.log('SET USER inSTATE', {
-        ...state,
-        details:{...action.user}})
-
       return {
         ...state,
         isAuthenticated: !isEmpty(action.user),
@@ -58,12 +51,14 @@ export default (state = userInitialState, action) => {
       }
 
     case UPDATE_PROFILE:
-      console.log('inSTATEup', {
-        ...state,
-        details:{...action.user}})
+      let updatedDetails = {
+        ...state.user,
+        ...action.user
+      }
+
       return {
         ...state,
-        details: action.user
+        details: updatedDetails
       }
 
     default:
