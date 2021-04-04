@@ -35,8 +35,7 @@ class MyAccount extends PureComponent {
       emailEditMode: false,
       addressEditMode: false
     }
-    this.handleChange = this.handleChange.bind(this);
-    console.log(props)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange = event => {
@@ -164,7 +163,8 @@ class MyAccount extends PureComponent {
 // Component Properties
 MyAccount.propTypes = {
   user: PropTypes.object.isRequired,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
+  updateUserProfile: PropTypes.func.isRequired
 }
 
 // Component State

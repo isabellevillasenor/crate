@@ -15,6 +15,7 @@ export const SUBSCRIPTIONS_GET_LIST_BY_USER_FAILURE = 'SUBSCRIPTIONS/GET_LIST_BY
 export const SUBSCRIPTIONS_GET_REQUEST = 'SUBSCRIPTIONS/GET_REQUEST'
 export const SUBSCRIPTIONS_GET_RESPONSE = 'SUBSCRIPTIONS/GET_RESPONSE'
 export const SUBSCRIPTIONS_GET_FAILURE = 'SUBSCRIPTIONS/GET_FAILURE'
+export const SUBSCRIPTIONS_UPDATE = 'SUBSCRIPTIONS/UPDATE'
 
 // Actions
 
@@ -29,7 +30,7 @@ export function getList(isLoading = true) {
 
     return axios.post(routeApi, query({
       operation: 'subscriptions',
-      fields: ['id', 'user { name, email }', 'crate { id, name, description }', 'createdAt', 'deliveryDate']
+      fields: ['id', 'user { name, email }', 'crate { id, name, description }', 'createdAt', 'delivery_date']
     }))
       .then(response => {
         if (response.status === 200) {
@@ -65,7 +66,7 @@ export function getListByUser(isLoading = true) {
 
     return axios.post(routeApi, query({
       operation: 'subscriptionsByUser',
-      fields: ['id', 'user { name, email }', 'crate { id, name, description }', 'createdAt']
+      fields: ['id', 'user { name, email }', 'crate { id, name, description }', 'createdAt', 'delivery_date']
     }))
       .then(response => {
         if (response.status === 200) {
@@ -100,7 +101,7 @@ export function get(slug, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'subscription',
       variables: { slug },
-      fields: ['id', 'user { name, email }', 'crate { id, name, description }', 'createdAt']
+      fields: ['id', 'user { name, email }', 'crate { id, name, description }', 'createdAt', 'delivery_date']
     }))
       .then(response => {
         dispatch({
@@ -141,3 +142,21 @@ export function remove(variables) {
     }))
   }
 }
+
+//update subscription date
+export function updateSubscriptionDate(newDate, subscriptionId) {
+  return dispatch => {
+    return axios.post(routeApi,
+      mutation({
+        operation: 'subscriptionUpdate',
+        variables: {id: subscriptionId, delivery_date: newDate},
+        fields: ['delivery_date']
+      })
+    ).then(response => {
+      dispatch({
+        type: SUBSCRIPTIONS_UPDATE,
+        delivery_date: newDate
+      })
+  
+    })
+}}

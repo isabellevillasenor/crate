@@ -10,11 +10,12 @@ import Button from '../../ui/button/Button'
 import H4 from '../../ui/typography/H4'
 import Icon from '../../ui/icon'
 import { white, grey2, black } from '../../ui/common/colors'
+import { Input, Select } from '../../ui/input'
 
 // App Imports
 import { APP_URL } from '../../setup/config/env'
 import { messageShow, messageHide } from '../common/api/actions'
-import { remove, getListByUser } from '../subscription/api/actions'
+import { remove, getListByUser, updateSubscriptionDate } from '../subscription/api/actions'
 
 // Component
 class Item extends PureComponent {
@@ -25,6 +26,7 @@ class Item extends PureComponent {
     this.state = {
       isLoading: false
     }
+    console.log('ITEM PROPS', props)
   }
 
   onClickUnsubscribe = (id) => {
@@ -62,8 +64,13 @@ class Item extends PureComponent {
     }
   }
 
+  handleSubmit() {
+    //need to figure out how to grab date from select
+    this.props.updateSubscriptionDate(this.props.id, 'date')
+  }
+
   render() {
-    const { id, crate, createdAt } = this.props.subscription
+    const { id, crate, createdAt, deliveryDate } = this.props.subscription
     const { isLoading } = this.state
 
     return (
@@ -92,6 +99,28 @@ class Item extends PureComponent {
             Subscribed on { new Date(parseInt(createdAt)).toDateString() }
           </p>
         </div>
+        <div className='subscription-update' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingBottom: '2rem' }}>
+          <p style={{ color: grey2, marginBottom: '0.5rem', marginTop: '1.5rem' }}>Current delivery date</p>
+          <div style={{ display: 'flex', justify: 'center', alignItems: 'center' }}>
+            <Select name='deliveryDate' select='Tuesday'>
+              <option value='Monday'>Monday</option>
+              <option value='Tuesday'>Tuesday</option>
+              <option value='Wednesday'>Wednesday</option>
+              <option value='Thursday'>Thursday</option>
+              <option value='Friday'>Friday</option>
+              <option value='Saturday'>Saturday</option>
+              <option value='Sunday'>Sunday</option>
+            </Select>
+            <Button
+              type="submit"
+              onClick={this.handleSubmit}
+              theme="secondary"
+              style={{ display: 'flex', alignItems: 'center', height: '1.9em', marginLeft: '2em' }}
+            >
+              Update
+            </Button>
+          </div>
+        </div>
       </Card>
     )
   }
@@ -104,7 +133,8 @@ Item.propTypes = {
   remove: PropTypes.func.isRequired,
   getListByUser: PropTypes.func.isRequired,
   messageShow: PropTypes.func.isRequired,
-  messageHide: PropTypes.func.isRequired
+  messageHide: PropTypes.func.isRequired,
+  updateSubscriptionDate: PropTypes.func.isRequired
 }
 
 // Component State
@@ -114,4 +144,4 @@ function itemState(state) {
   }
 }
 
-export default connect(itemState, { remove, getListByUser, messageShow, messageHide })(withRouter(Item))
+export default connect(itemState, { remove, getListByUser, messageShow, messageHide, updateSubscriptionDate })(withRouter(Item))

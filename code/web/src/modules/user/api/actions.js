@@ -141,6 +141,7 @@ export function updateUserProfile(updatedUser) {
     })
 }}
 
+
 //This is for the 'my-products' page
 //get delivery history (all products)
 //specifies that for each product in that list of 'productids', we want a subset of the product information
