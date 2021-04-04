@@ -50,7 +50,10 @@ export async function login(parentValue, { email, password }) {
         id: userDetails.id,
         name: userDetails.name,
         email: userDetails.email,
-        role: userDetails.role
+        role: userDetails.role,
+        address: userDetails.address,
+        description: userDetails.description,
+        image: userDetails.image
       }
 
       return {
@@ -85,13 +88,12 @@ export async function remove(parentValue, { id }) {
 export async function getGenders() {
   return Object.values(params.user.gender)
 }
-
+// 
 // Update user
-export async function update(parentValue, { id, name, email, image, description, address}, { auth }) {
+export async function update(parentValue, { id, email, image, description, address}, { auth }) {
   if(auth.user) {
     return await models.User.update(
       {
-        name,
         email,
         image,
         description,
