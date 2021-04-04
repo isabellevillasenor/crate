@@ -120,7 +120,7 @@ export function getGenders() {
 }
 
 
-//Mutate profile data (email, address, description)
+//Mutate profile data 
 export function updateUserProfile(updatedUser) {
   console.log('updatedUser', updatedUser)
   //inside of updatedUser, there's now an id that can be interpolated & sent to the server
@@ -129,40 +129,9 @@ export function updateUserProfile(updatedUser) {
       mutation({
         operation: 'userUpdate',
         variables: updatedUser,
-        fields: ['id', 'name', 'role', 'email', 'image', 'description', 'address']
+        fields: ['id', 'email', 'image', 'description', 'address']
       })
     ).then(response => {
-    console.log('IN ACTION RESPONSE', response)
-
-    const userStuff = response.user
-    return dispatch => {
-      dispatch({
-        type: UPDATE_PROFILE,
-        user: {
-          userStuff
-        }
-      })
-    }
-  })
-}}
-
-export function getUserProfile(id) {
-  console.log('route', routeApi)
-  return dispatch => {
-    return axios.post(routeApi,
-      query({
-        operation: 'user',
-        variable: {id: id},
-        fields: [
-            'name',
-            'role',
-            'email',
-            'address',
-            'description',
-            'image',
-            'products'
-        ]
-      })).then(response => {
     console.log('IN ACTION RESPONSE', response)
 
     const userStuff = response.user
