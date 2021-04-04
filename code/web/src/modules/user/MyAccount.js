@@ -59,12 +59,12 @@ class MyAccount extends PureComponent {
     })
   }
 
-  renderButtonEditView = (valueProperty, clickCallback) => {
+  renderButtonEditView = (valueName, valueProperty, clickCallback) => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <Input
           type='text'
-          name='address'
+          name={valueName}
           value={valueProperty}
           onChange={this.handleChange}
         />
@@ -128,7 +128,9 @@ class MyAccount extends PureComponent {
 
                 {/* Personal Description */}
                 <p style={{ color: grey2 }}><strong>Personal Description:</strong></p>
-                {this.state.descriptionEditMode ? this.renderButtonEditView(this.state.user.description, () => this.editProperty('descriptionEditMode')) : this.renderButtonDefaultView(this.state.user.description, () => this.editProperty('descriptionEditMode'))}
+                {this.state.descriptionEditMode 
+                  ? this.renderButtonEditView('description', this.state.user.description, () => this.editProperty('descriptionEditMode')) 
+                  : this.renderButtonDefaultView(this.state.user.description, () => this.editProperty('descriptionEditMode'))}
 
               </section>
 
@@ -137,13 +139,17 @@ class MyAccount extends PureComponent {
                 {/* Email */}
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <p style={{ color: grey2, marginBottom: '1.5em' }}>Email:</p>
-                  {this.state.emailEditMode ? this.renderButtonEditView(this.state.user.email, () => this.editProperty('emailEditMode')) : this.renderButtonDefaultView(this.state.user.email, () => this.editProperty('emailEditMode'))}
+                  {this.state.emailEditMode 
+                    ? this.renderButtonEditView('email', this.state.user.email, () => this.editProperty('emailEditMode')) 
+                    : this.renderButtonDefaultView(this.state.user.email, () => this.editProperty('emailEditMode'))}
                 </div>
 
                 {/* Mailing Address */}
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <p style={{ color: grey2, marginBottom: '1.5em' }}>Address:</p>
-                  {this.state.addressEditMode ? this.renderButtonEditView(this.state.user.address, () => this.editProperty('addressEditMode')) : this.renderButtonDefaultView(this.state.user.address, () => this.editProperty('addressEditMode'))}
+                  {this.state.addressEditMode 
+                    ? this.renderButtonEditView('address', this.state.user.address, () => this.editProperty('addressEditMode')) 
+                    : this.renderButtonDefaultView(this.state.user.address, () => this.editProperty('addressEditMode'))}
                 </div>
               </section>
             </form>
