@@ -73,7 +73,7 @@ class MyAccount extends PureComponent {
   renderDescriptionDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black, overflow: 'scroll' }}>{this.state.description}</p>
+        <p className={'description'} style={{ color: black, overflow: 'scroll' }}>{this.state.description}</p>
         <Button
           type="submit"
           theme="secondary"
@@ -118,7 +118,7 @@ class MyAccount extends PureComponent {
   renderEmailDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black }}>{this.state.email}</p>
+        <p className={'email'} style={{ color: black }}>{this.state.email}</p>
         <Button
           type="submit"
           theme="secondary"
@@ -163,7 +163,7 @@ class MyAccount extends PureComponent {
   renderAddressDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black }}>{this.state.address}</p>
+        <p className={'address'} style={{ color: black }}>{this.state.address}</p>
         <Button
           type="submit"
           theme="secondary"
