@@ -72,7 +72,7 @@ class MyAccount extends PureComponent {
   renderDescriptionDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black, overflow: 'scroll' }}>{this.state.description}</p>
+        <p className={'description'} style={{ color: black, overflow: 'scroll' }}>{this.state.description}</p>
         <Button
           type="submit"
           theme="secondary"
@@ -117,7 +117,7 @@ class MyAccount extends PureComponent {
   renderEmailDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black }}>{this.state.email}</p>
+        <p className={'email'} style={{ color: black }}>{this.state.email}</p>
         <Button
           type="submit"
           theme="secondary"
@@ -162,7 +162,7 @@ class MyAccount extends PureComponent {
   renderAddressDefaultView = () => {
     return (
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <p style={{ color: black }}>{this.state.address}</p>
+        <p className={'address'} style={{ color: black }}>{this.state.address}</p>
         <Button
           type="submit"
           theme="secondary"
@@ -220,7 +220,7 @@ class MyAccount extends PureComponent {
 
                 {/* Mailing Address */}
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <p style={{ color: grey2, marginBottom: '1.5em' }}>Address:</p>
+                  <p className='addres' style={{ color: grey2, marginBottom: '1.5em' }}>Address:</p>
                   {this.state.addressEditMode ? this.renderAddressEditView() : this.renderAddressDefaultView()}
                 </div>
 

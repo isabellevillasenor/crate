@@ -14,7 +14,6 @@
     "start:server:prod": " node build/index.js",
     "storybook": "start-storybook -p 9000 -c storybook",
     "cypress": "cypress open"
-    
   },
   "keywords": [],
   "author": "",
