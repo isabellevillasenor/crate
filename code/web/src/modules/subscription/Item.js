@@ -27,7 +27,7 @@ class Item extends PureComponent {
       isLoading: false, 
       delivery_date: this.convertDate(props.subscription.delivery_date)
     }
-    console.log('in constructor', props.subscription)
+    // console.log('in constructor', props.subscription)
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -81,7 +81,7 @@ class Item extends PureComponent {
   }
 
   convertDate(unixDate) {
-    console.log(unixDate)
+    // console.log(unixDate)
     if (unixDate) {
     const valueDate = []
     let date = new Date(parseInt(unixDate))

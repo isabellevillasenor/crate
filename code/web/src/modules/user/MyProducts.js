@@ -24,7 +24,13 @@ class MyProducts extends PureComponent {
 
     this.state = {
       viewAll: true,
+      userProducts: []
     }
+    console.log('in constructor', props, getUserProducts)
+  }
+
+  componentDidMount() {
+    // getUserProducts(this.props.user.details.id)
   }
 
   toggleKept = () => {
@@ -158,4 +164,4 @@ function productsState(state) {
   }
 }
 
-export default connect(productsState, { logout })(MyProducts)
+export default connect(productsState, { logout, getUserProducts })(MyProducts)

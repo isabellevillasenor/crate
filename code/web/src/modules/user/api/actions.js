@@ -37,9 +37,10 @@ export function login(userCredentials, isLoading = true) {
     return axios.post(routeApi, query({
       operation: 'userLogin',
       variables: userCredentials,
-      fields: ['user {name, email, role, id, address, description, image}', 'token']
+      fields: ['user {name, email, role, id, address, description, image, products {name, description, image, userProducts {kept, deliveryDate}}}', 'token']
     }))
       .then(response => {
+        console.log('IN RESPONSE LOGIN', response)
         let error = ''
 
         if (response.data.errors && response.data.errors.length > 0) {
@@ -142,52 +143,25 @@ export function updateUserProfile(updatedUser) {
 }}
 
 
-//this.setState(prevState => {
-//   return {
-//     places : prevState.places.concat(prevState.placeName)
-//   };
-// });
-// };
-
 //This is for the 'my-products' page
 //get delivery history (all products)
 //specifies that for each product in that list of 'productids', we want a subset of the product information
 // image, name, description, delivered date, kept
-// export function getUserProduct(userID) {
-//   let queryObject = query({
-//     operation: 'getUserProduct',
-//     variables: userID,
-//     fields: ['image', 'name', 'description', 'deliveredDate', 'kept']
-//   })
+// export function getUserProducts(userID) {
+//   console.log('IN PRODUCTS', userID)
 //   return dispatch => {
-//     return axios.post(routeApi, queryObject).then(response => {
+//     return axios.post(routeApi, 
+//       query({
+//         operation: 'getUserProduct',
+//         variables: {id: userID},
+//         fields: ['image', 'name', 'description', 'deliveredDate', 'kept']
+//       })
+//     ).then(response => {
+//       console.log('RESPONSE', response)
 //       return dispatch({
 //         type: GET_PRODUCTS,
 //         user,
 //       })
 //     })
 //   }
-// }
-
-//Mutate profile delivery dates
-//this needs to be mapped over all the users' subscriptions and called for every subscription
-// export function updateUserProductsDeliveryDate(listOfUserProducts, updatedDate) {
-//   listOfUserProducts.forEach(product => {
-//     return dispatch => {
-//       return axios.post(routeApi, mutation({
-//         operation: 'subscriptionUpdate',
-//         variables: updatedDate,
-//         fields: [product.deliveryDate]
-//       })).then(response => {
-//         if (!response.status === 200) {
-//           throw new Error('Whoops, something went wrong')
-//         }
-//         const product = response.data.product
-//         return dispatch({
-//           type: UPDATE_PRODUCTS,
-//           user,
-//         })
-//       })
-//     }
-//   })
 // }

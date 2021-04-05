@@ -6,18 +6,14 @@ import { connect } from 'react-redux'
 // UI Imports
 import { Grid, GridCell } from '../../ui/grid'
 import { H4 } from '../../ui/typography'
-import { Input, Textarea, File, Select } from '../../ui/input'
-import Icon from '../../ui/icon'
+import { Input, File} from '../../ui/input'
 import Button from '../../ui/button'
 import { grey2, black } from '../../ui/common/colors'
 
 //App Imports
 import SubNav from './SubNav'
-import { logout, updateUserProfile, getUserProfile } from './api/actions'
+import { logout, updateUserProfile } from './api/actions'
 import { APP_URL } from '../../setup/config/env'
-import { subscription } from 'gql-query-builder'
-import Axios from 'axios'
-
 class MyAccount extends PureComponent {
 
   constructor(props) {
@@ -131,7 +127,6 @@ class MyAccount extends PureComponent {
                 {this.state.descriptionEditMode 
                   ? this.renderButtonEditView('description', this.state.user.description, () => this.editProperty('descriptionEditMode')) 
                   : this.renderButtonDefaultView(this.state.user.description, () => this.editProperty('descriptionEditMode'))}
-
               </section>
 
               <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around', width: '40%', height: '60vh' }}>
