@@ -205,7 +205,7 @@ class MyAccount extends PureComponent {
                 />
 
                 {/* Personal Description */}
-                <p className='description' style={{ color: grey2 }}><strong>Personal Description:</strong></p>
+                <p style={{ color: grey2 }}><strong>Personal Description:</strong></p>
                 {this.state.descriptionEditMode ? this.renderDescriptionEditView() : this.renderDescriptionDefaultView()}
 
               </section>
@@ -220,7 +220,7 @@ class MyAccount extends PureComponent {
 
                 {/* Mailing Address */}
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <p className='addres' style={{ color: grey2, marginBottom: '1.5em' }}>Address:</p>
+                  <p style={{ color: grey2, marginBottom: '1.5em' }}>Address:</p>
                   {this.state.addressEditMode ? this.renderAddressEditView() : this.renderAddressDefaultView()}
                 </div>
 

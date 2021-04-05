@@ -15,7 +15,7 @@ import userRoutes from '../../setup/routes/user'
 import { logout } from './api/actions'
 
 const SubNav = (props) => {
-  const currentPage = typeof window.location.pathname
+  const currentPage = window.location.pathname
   const checkColor = linkName => {
     return currentPage === linkName
       ? 'secondary'
