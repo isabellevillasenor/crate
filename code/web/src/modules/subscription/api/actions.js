@@ -154,9 +154,9 @@ export function updateSubscriptionDate(subId, newDate) {
       })
     ).then(response => {
       if (response.status === 200) {
-        alert(`Successfully updated delivery to ${newDate}! Date will be updated on next login.`)
+        alert(`Successfully updated delivery! Date will be updated on next login.`)
       }
-      
+    
       dispatch({
         type: SUBSCRIPTIONS_UPDATE,
         delivery_date: newDate.getTime()/1000
