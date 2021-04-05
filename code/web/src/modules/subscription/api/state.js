@@ -133,6 +133,7 @@ export const subscription = (state = subscriptionInitialState, action) => {
       }
 
     case SUBSCRIPTIONS_UPDATE:
+      console.log('IN RESOLVER SUB', state, action.delivery_date)
       return {
         ...state,
         item: {...state.item, delivery_date: action.delivery_date}

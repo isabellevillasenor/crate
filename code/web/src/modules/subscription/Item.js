@@ -25,9 +25,11 @@ class Item extends PureComponent {
 
     this.state = {
       isLoading: false, 
-      delivery_date: Date.now()
+      delivery_date: this.convertDate(props.subscription.delivery_date)
     }
-    console.log(props)
+    console.log('in constructor', props.subscription.delivery_date)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   onClickUnsubscribe = (id) => {
@@ -74,14 +76,12 @@ class Item extends PureComponent {
   }
 
   handleSubmit() {
-    updateSubscriptionDate(this.props.id, this.state.delivery_date).then(response => {
-      if (response.status === 200) {
-        alert(`Successfully updated delivery to ${this.state.delivery_date}! Date will be updated on next login.`)
-      }
-    })
+    const unixDate = new Date(this.state.delivery_date)
+    this.props.updateSubscriptionDate(this.props.subscription.id, unixDate)
   }
 
   convertDate(unixDate) {
+    console.log(unixDate)
     if (unixDate) {
     const valueDate = []
     let date = new Date(parseInt(unixDate))
@@ -93,7 +93,7 @@ class Item extends PureComponent {
     }
     return '2021-05-20'
   }
-  
+
   render() {
     const { id, crate, createdAt, delivery_date} = this.props.subscription
     const { isLoading } = this.state
@@ -129,8 +129,9 @@ class Item extends PureComponent {
           <div style={{ display: 'flex', flexDirection: 'column', justify: 'center', alignItems: 'center', textAlign: 'center' }}>
             <Input 
               type='date'
+              min={this.convertDate(createdAt)}
               name='delivery_date'
-              value={ this.convertDate(delivery_date) }
+              value={ this.state.delivery_date }
               onChange={this.handleChange}
               style={{ textAlign: 'center' }}
             />

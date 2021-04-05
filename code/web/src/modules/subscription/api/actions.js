@@ -144,19 +144,22 @@ export function remove(variables) {
 }
 
 //update subscription date
-export function updateSubscriptionDate(newDate, subscriptionId) {
+export function updateSubscriptionDate(subId, newDate) {
   return dispatch => {
     return axios.post(routeApi,
       mutation({
         operation: 'subscriptionUpdate',
-        variables: {id: subscriptionId, delivery_date: newDate},
+        variables: {id: subId, delivery_date: newDate},
         fields: ['delivery_date']
       })
     ).then(response => {
+      if (response.status === 200) {
+        alert(`Successfully updated delivery to ${newDate}! Date will be updated on next login.`)
+      }
+      
       dispatch({
         type: SUBSCRIPTIONS_UPDATE,
-        delivery_date: newDate
+        delivery_date: newDate.getTime()/1000
       })
-  
     })
 }}

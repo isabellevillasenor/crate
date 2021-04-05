@@ -57,7 +57,7 @@ class Subscriptions extends PureComponent {
                     ? this.props.subscriptions.list.map(subscription => (
                       <>
                         <div key={subscription.id} id={subscription.id} style={{ margin: '2em', float: 'left' }}>
-                          <SubscriptionItem subscription={subscription} />
+                          <SubscriptionItem subscription={subscription} key={Date.now()} />
                         </div>
                       </>))
                       : <EmptyMessage message="You are not subscribed to any crates yet." />
